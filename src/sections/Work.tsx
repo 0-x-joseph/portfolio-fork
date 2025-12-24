@@ -80,6 +80,9 @@ export const Work = () => {
                     <h4 className="font-bold text-base text-text-strong group-hover:text-accent transition-colors">{p.title}</h4>
                     {p.github && <a href={p.github} className="text-text-muted hover:text-accent"><ArrowUpRight size={14} /></a>}
                 </div>
+                <div className="text-[10px] font-mono text-accent mb-2 uppercase tracking-wider">
+                  {p.role}
+                </div>
                 <p className="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">{p.description}</p>
                 <div className="flex flex-wrap gap-2">
                     {p.tech.slice(0, 3).map(t => (

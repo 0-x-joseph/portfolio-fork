@@ -8,7 +8,7 @@ export interface Project {
   link?: string;
   github?: string;
   featured: boolean;
-  category: 'AI' | 'Web' | 'System' | 'Infra';
+  category: 'AI' | 'Web' | 'System' | 'Infra' | 'Security' | 'Software Engineering' | 'Graphics & Simulation' | 'DevOps & Utilities';
   imagePlaceholder?: string; // For visual variety
 }
 
@@ -18,6 +18,8 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
+  highlights?: string[];
+  tech?: string[];
 }
 
 export interface Education {
@@ -25,6 +27,8 @@ export interface Education {
   degree: string;
   school: string;
   year: string;
+  focus?: string;
+  certifications?: string[];
 }
 
 export interface SkillCategory {

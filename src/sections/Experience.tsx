@@ -70,9 +70,25 @@ export const Experience = () => {
                  <div className="w-2/3 pt-0">
                     <h3 className="text-xl font-bold text-text-strong mb-1">{exp.role}</h3>
                     <div className="text-sm font-medium text-text-muted mb-4">{exp.company}</div>
-                    <p className="text-text text-sm leading-relaxed max-w-sm">
+                    <p className="text-text text-sm leading-relaxed max-w-sm mb-4">
                       {exp.description}
                     </p>
+                    {exp.highlights && (
+                      <ul className="list-disc list-outside ml-4 space-y-1 mb-4 text-sm text-text-muted/80 marker:text-accent">
+                        {exp.highlights.map((h, idx) => (
+                          <li key={idx}>{h}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {exp.tech && (
+                      <div className="flex flex-wrap gap-2">
+                        {exp.tech.map((t) => (
+                          <span key={t} className="text-[10px] font-mono uppercase px-1.5 py-0.5 border border-line rounded-[2px] text-text-muted">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                  </div>
               </div>
 
@@ -82,9 +98,25 @@ export const Experience = () => {
                  <div className="font-mono text-accent text-xs uppercase tracking-widest mb-2">{exp.period}</div>
                  <h3 className="text-lg font-bold text-text-strong mb-1">{exp.role}</h3>
                  <div className="text-sm font-medium text-text-muted mb-3">{exp.company}</div>
-                 <p className="text-text text-sm leading-relaxed">
+                 <p className="text-text text-sm leading-relaxed mb-4">
                    {exp.description}
                  </p>
+                 {exp.highlights && (
+                    <ul className="list-disc list-outside ml-4 space-y-1 mb-4 text-sm text-text-muted/80 marker:text-accent">
+                      {exp.highlights.map((h, idx) => (
+                        <li key={idx}>{h}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {exp.tech && (
+                    <div className="flex flex-wrap gap-2">
+                      {exp.tech.map((t) => (
+                        <span key={t} className="text-[10px] font-mono uppercase px-1.5 py-0.5 border border-line rounded-[2px] text-text-muted">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
               </div>
             </motion.div>
           ))}

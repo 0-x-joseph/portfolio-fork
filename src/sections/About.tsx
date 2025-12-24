@@ -58,10 +58,22 @@ export const About = () => {
                     <div key={edu.id} className="relative pl-6 border-l border-line-strong">
                         <div className="absolute -left-[3px] top-1.5 w-[5px] h-[5px] bg-accent rounded-full"></div>
                         <div className="text-text-strong font-medium mb-1">{edu.degree}</div>
-                        <div className="text-xs font-mono text-text-muted flex justify-between uppercase tracking-wide">
+                        <div className="text-xs font-mono text-text-muted flex justify-between uppercase tracking-wide mb-2">
                         <span>{edu.school}</span>
                         <span>{edu.year}</span>
                         </div>
+                        {edu.focus && (
+                          <p className="text-xs text-text-muted/80 mb-2 leading-relaxed">
+                            {edu.focus}
+                          </p>
+                        )}
+                        {edu.certifications && (
+                          <ul className="list-disc list-inside text-[10px] text-text-muted/70 space-y-0.5">
+                            {edu.certifications.map((cert, idx) => (
+                              <li key={idx}>{cert}</li>
+                            ))}
+                          </ul>
+                        )}
                     </div>
                     ))}
                 </div>

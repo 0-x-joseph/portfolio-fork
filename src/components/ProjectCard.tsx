@@ -54,9 +54,12 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           </div>
         </div>
         
-        <h3 className="text-xl font-display font-bold mb-3 text-text-strong group-hover:text-accent transition-colors">
+        <h3 className="text-xl font-display font-bold mb-1 text-text-strong group-hover:text-accent transition-colors">
           {project.title}
         </h3>
+        <div className="text-xs font-mono text-accent mb-3 uppercase tracking-wider">
+          {project.role}
+        </div>
         <p className="text-text-muted text-sm leading-relaxed mb-6 line-clamp-3">
           {project.description}
         </p>
