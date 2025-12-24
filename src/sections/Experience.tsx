@@ -42,9 +42,6 @@ export const Experience = () => {
                       {exp.period}
                    </div>
                    <h4 className="text-text-strong font-bold text-lg md:text-base">{exp.company}</h4>
-                   <div className="hidden md:block text-[10px] text-text-muted font-mono mt-1 uppercase tracking-wider">
-                      Log_ID: {exp.id}
-                   </div>
                 </div>
 
                 <div className="absolute left-[-5px] md:left-[30%] md:-ml-[5px] top-0 md:top-1.5 z-10">

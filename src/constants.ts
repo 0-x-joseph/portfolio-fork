@@ -62,8 +62,8 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: "exp-3",
-    role: "Systems Lead & Operations Architect",
-    company: "Confidential (Maritime Sector)",
+    role: "Navigation Systems Lead",
+    company: "Royal Navy / Maritime Sector",
     period: "2022 - 2024",
     description: "Managed mission-critical navigation systems and real-time telemetry data in high-stakes environments.",
     highlights: [
@@ -71,12 +71,12 @@ export const EXPERIENCE: Experience[] = [
       "Led cross-functional teams to execute high-precision maneuvers in dynamic environments.",
       "Performed real-time debugging and anomaly resolution on critical system hardware/software."
     ],
-    tech: ["Systems Monitoring", "Incident Response", "Real-time Telemetry"]
+    tech: ["Systems Monitoring", "Incident Response", "Real-time Telemetry", "Navigation Software"]
   },
   {
     id: "exp-4",
     role: "Technical Analyst (Intern)",
-    company: "Confidential (Maritime Sector)",
+    company: "Royal Navy / Maritime Sector",
     period: "2020 - 2022",
     description: "Supported the maintenance and calibration of integrated bridge systems and data telemetry.",
     highlights: [
@@ -164,7 +164,7 @@ export const PROJECTS: Project[] = [
     role: "Frontend Dev",
     impact: "Engineered a responsive, API-driven architecture using CSS Grid and modular React components.",
     tech: ["React", "Styled Components", "REST APIs", "CSS Grid"],
-    featured: true,
+    featured: false,
     category: "Web",
     github: "https://github.com/is-ammar/lang-me"
   },
@@ -186,7 +186,7 @@ export const PROJECTS: Project[] = [
     role: "Backend Dev / Security Designer",
     impact: "Implemented a multi-layered verification system with environment-driven CORS and state-based rate limiting.",
     tech: ["Node.js", "Express", "CORS", "Buffer"],
-    featured: true,
+    featured: false,
     category: "Security",
     github: "https://github.com/is-ammar/server"
   },
@@ -197,7 +197,7 @@ export const PROJECTS: Project[] = [
     role: "System Developer",
     impact: "Solved the Circular Wait condition using an asymmetric resource acquisition strategy, ensuring 100% thread safety and starvation monitoring.",
     tech: ["C", "pthreads", "Mutexes", "Synchronization"],
-    featured: true,
+    featured: false,
     category: "Software Engineering",
     github: "https://github.com/Is-Ammar/PHILOSOPHERS"
   },
@@ -230,7 +230,7 @@ export const PROJECTS: Project[] = [
     role: "Graphics Programmer",
     impact: "Implemented smooth mouse-centered zooming and optimized escape-time algorithms to maintain high frame rates during exploration.",
     tech: ["C", "MiniLibX", "Complex Mathematics", "Computer Graphics"],
-    featured: true,
+    featured: false,
     category: "Graphics & Simulation",
     github: "https://github.com/Is-ammar/fract-ol"
   },
@@ -241,7 +241,7 @@ export const PROJECTS: Project[] = [
     role: "Algorithm Developer",
     impact: "Engineered a chunk-based pre-sorting strategy that sorts 500 numbers in under 5500 operations (Top-tier efficiency).",
     tech: ["C", "Algorithms", "Data Structures", "Complexity Analysis"],
-    featured: true,
+    featured: false,
     category: "Software Engineering",
     github: "https://github.com/Is-ammar/push_swap"
   },
@@ -252,7 +252,7 @@ export const PROJECTS: Project[] = [
     role: "QA / Automation Engineer",
     impact: "Automated the validation of 1000+ random permutations, ensuring the algorithm stays within the 5500-move limit for 500 integers.",
     tech: ["Python", "Subprocess", "CLI Testing", "Randomization"],
-    featured: true,
+    featured: false,
     category: "DevOps & Utilities",
     github: "https://github.com/Is-ammar/push_swap_tester"
   }
