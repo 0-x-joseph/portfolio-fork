@@ -24,7 +24,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         boxShadow: 'var(--shadow)',
         transition: { duration: DURATION.sm, ease: EASE_OUT }
       }}
-      className="group bg-surface/80 backdrop-blur-sm border border-line flex flex-col h-full rounded-[2px] relative overflow-hidden transition-colors"
+      className="group bg-surface/80 backdrop-blur-sm border border-line/70 flex flex-col h-full rounded-2xl relative overflow-hidden transition-colors shadow-card"
     >
       {/* Decorative corner accent - animated on hover */}
       <motion.div 
@@ -36,7 +36,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
       <div className="p-6 flex-1 flex flex-col">
         <div className="flex justify-between items-start mb-6">
-          <div className="inline-flex items-center gap-2 px-2 py-1 bg-bg-elev-1 border border-line rounded-[2px] text-[10px] font-mono uppercase tracking-widest text-text-muted">
+          <div className="inline-flex items-center gap-2 px-2 py-1 bg-bg-elev-1 border border-line/70 rounded-full text-[10px] font-mono uppercase tracking-widest text-text-muted">
             {getIcon(project.category)}
             {project.category}_OP
           </div>
@@ -57,7 +57,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         <h3 className="text-xl font-display font-bold mb-1 text-text-strong group-hover:text-accent transition-colors">
           {project.title}
         </h3>
-        <div className="text-xs font-mono text-accent mb-3 uppercase tracking-wider">
+        <div className="text-xs font-mono text-accent mb-3 uppercase tracking-[0.2em]">
           {project.role}
         </div>
         <p className="text-text-muted text-sm leading-relaxed mb-6 line-clamp-3">
@@ -65,7 +65,7 @@ export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         </p>
 
         <div className="mt-auto">
-          <div className="mb-4 pt-4 border-t border-line border-dashed">
+          <div className="mb-4 pt-4 border-t border-line/70 border-dashed">
              <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-text-muted mb-2">
                 <span>Impact Metric</span>
                 <span className="text-accent">{project.impact}</span>

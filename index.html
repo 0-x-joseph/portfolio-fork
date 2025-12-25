@@ -45,24 +45,28 @@
     </script>
     <style>
       :root {
-        --bg: #0b0f12;
-        --bg-elev-1: #0f1418;
-        --bg-elev-2: #141a1f;
-        --surface: #12171c;
-        --text-strong: #e6ebef;
-        --text: #c7d0d9;
-        --text-muted: #8a97a3;
-        --accent: #20c20e;
-        --accent-2: #e0554e;
-        --line: #1f272d;
-        --line-strong: #2b343c;
-        --focus: #7be27b;
-        --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-        --glow: 0 0 12px rgba(32, 194, 14, 0.25);
+        --bg: #0b0f13;
+        --bg-elev-1: #11171d;
+        --bg-elev-2: #161d25;
+        --surface: #121820;
+        --text-strong: #e7edf3;
+        --text: #cbd5df;
+        --text-muted: #8e9aa7;
+        --accent: #38e6a5;
+        --accent-2: #f0a15a;
+        --line: #1d2630;
+        --line-strong: #2a3440;
+        --focus: #98f2cb;
+        --shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+        --glow: 0 0 20px rgba(56, 230, 165, 0.25);
       }
 
       body {
         background-color: var(--bg);
+        background-image:
+          radial-gradient(1200px circle at 8% -10%, rgba(56, 230, 165, 0.12), transparent 55%),
+          radial-gradient(900px circle at 95% 15%, rgba(240, 161, 90, 0.08), transparent 55%),
+          linear-gradient(180deg, rgba(11, 15, 19, 0.98), rgba(11, 15, 19, 0.98));
         color: var(--text);
         font-family: 'IBM Plex Sans', sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -105,6 +109,15 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: var(--text-muted);
+      }
+
+      /* Hide scrollbars but keep scroll */
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
       }
     </style>
   <script type="importmap">

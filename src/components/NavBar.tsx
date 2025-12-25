@@ -12,12 +12,12 @@ export const NavBar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: DURATION.md, ease: EASE_OUT }}
-      className="fixed top-0 left-0 w-full z-40 bg-bg/90 backdrop-blur-sm border-b border-line"
+      className="fixed top-0 left-0 w-full z-40 bg-bg/70 backdrop-blur-xl border-b border-line/60"
     >
       <div className="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 font-mono text-sm font-bold tracking-wider hover:text-accent transition-colors text-text-strong group">
+        <a href="#" className="flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] hover:text-accent transition-colors text-text-strong group">
           <Terminal size={16} className="text-accent group-hover:animate-pulse" />
-          ISMAIL.AMMAR
+          Ismail Ammar
         </a>
         
         {/* Desktop Menu */}
@@ -30,7 +30,7 @@ export const NavBar = () => {
             href={SOCIALS.resume} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 border border-line-strong text-text-strong px-4 py-2 hover:border-accent hover:text-accent transition-all rounded-[1px]"
+            className="flex items-center gap-2 rounded-full border border-line-strong/70 bg-bg-elev-1/60 text-text-strong px-4 py-2 hover:border-accent/60 hover:text-accent hover:shadow-glow transition-all"
           >
             <Download size={14} /> <span className="hidden lg:inline">RESUME_V1.PDF</span><span className="lg:hidden">RESUME</span>
           </a>
@@ -50,14 +50,14 @@ export const NavBar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: DURATION.sm, ease: EASE_OUT }}
-            className="md:hidden bg-bg-elev-1 border-b border-line overflow-hidden"
+            className="md:hidden bg-bg-elev-1/90 border-b border-line/60 overflow-hidden"
           >
             <div className="flex flex-col p-6 gap-6 font-mono uppercase text-sm tracking-widest text-text-muted">
               <a href="#about" className="hover:text-accent" onClick={() => setIsOpen(false)}>About</a>
               <a href="#work" className="hover:text-accent" onClick={() => setIsOpen(false)}>Work</a>
               <a href="#skills" className="hover:text-accent" onClick={() => setIsOpen(false)}>Stack</a>
               <a href="#contact" className="hover:text-accent" onClick={() => setIsOpen(false)}>Contact</a>
-              <a href={SOCIALS.resume} target="_blank" className="text-accent flex items-center gap-2">
+              <a href={SOCIALS.resume} target="_blank" className="inline-flex items-center gap-2 rounded-full border border-accent/30 px-4 py-2 text-accent">
                  <Download size={14} /> Download Resume
               </a>
             </div>

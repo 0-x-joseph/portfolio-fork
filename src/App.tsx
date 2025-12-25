@@ -20,23 +20,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen text-text selection:bg-accent selection:text-bg overflow-x-hidden font-body bg-bg/90">
+    <div className="relative min-h-screen text-text selection:bg-accent selection:text-bg overflow-x-hidden font-body bg-bg">
       {/* Global Fluid Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <LiquidEther 
-          colors={['#101418', '#1f272d', '#20c20e']} 
-          mouseForce={10}
-          cursorSize={140}
+          colors={['#0b0f13', '#11171d', '#38e6a5']} 
+          mouseForce={6}
+          cursorSize={160}
           isViscous={false}
           viscous={20}
           iterationsViscous={20}
           iterationsPoisson={20}
           dt={0.012}
-          resolution={0.45}
+          resolution={0.5}
           autoDemo={true}
-          autoSpeed={0.1}
-          autoIntensity={0.8}
+          autoSpeed={0.08}
+          autoIntensity={0.45}
         />
+      </div>
+
+      {/* Ambient Light Wash */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute -top-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-accent/10 blur-[120px]" />
+        <div className="absolute bottom-[-20%] right-[-10%] h-[520px] w-[520px] rounded-full bg-accent-2/10 blur-[140px]" />
       </div>
       
       {/* Cinematic Viewport Blur Effects */}

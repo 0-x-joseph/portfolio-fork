@@ -5,16 +5,20 @@ import { fadeInUp, staggerContainer, revealLine } from '../utils/motion';
 
 export const About = () => {
   return (
-    <section id="about" className="py-32 px-6 max-w-[1200px] mx-auto border-x border-line/30">
+    <section id="about" className="relative py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-10 right-[-5%] h-56 w-56 rounded-full bg-accent/10 blur-[100px]" />
+      </div>
       <motion.div
          variants={staggerContainer}
          initial="initial"
          whileInView="animate"
          viewport={{ once: true, amount: 0.2 }}
+         className="relative z-10"
       >
         <div className="flex items-center gap-4 mb-16">
-            <motion.span variants={fadeInUp} className="font-mono text-accent text-sm">01</motion.span>
-            <motion.h2 variants={fadeInUp} className="text-2xl font-display font-bold tracking-tight text-text-strong">OPERATIONAL PROFILE</motion.h2>
+            <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-[0.3em]">01</motion.span>
+            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-text-strong">OPERATIONAL PROFILE</motion.h2>
             <motion.div variants={revealLine} className="h-px bg-line flex-grow"></motion.div>
         </div>
 
@@ -27,24 +31,24 @@ export const About = () => {
                 My work focuses on leveraging Large Language Models (LLMs) and MLOps practices to solve complex business problems. From architecting scalable RAG pipelines to optimizing inference costs on the cloud, I treat AI not just as a feature, but as a critical system component requiring rigor, observability, and efficiency.
             </p>
             
-            <div className="pt-8 grid grid-cols-2 gap-4">
-                <div className="border-l border-line pl-4">
-                    <h4 className="font-mono text-xs text-text-muted uppercase tracking-widest mb-2">Primary Focus</h4>
-                    <ul className="space-y-1 text-sm text-text-strong">
-                    <li>AI Systems Engineering</li>
-                    <li>High-Performance Web</li>
-                    </ul>
-                </div>
-                <div className="border-l border-line pl-4">
-                    <h4 className="font-mono text-xs text-text-muted uppercase tracking-widest mb-2">Location</h4>
-                    <div className="text-sm text-text-strong">Based in Morocco</div>
-                    <div className="text-sm text-text-muted">Available Remote</div>
-                </div>
+            <div className="pt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="rounded-xl border border-line/70 bg-bg-elev-1/60 px-5 py-4">
+                <h4 className="font-mono text-xs text-text-muted uppercase tracking-widest mb-2">Primary Focus</h4>
+                <ul className="space-y-1 text-sm text-text-strong">
+                  <li>AI Systems Engineering</li>
+                  <li>High-Performance Web</li>
+                </ul>
+              </div>
+              <div className="rounded-xl border border-line/70 bg-bg-elev-1/60 px-5 py-4">
+                <h4 className="font-mono text-xs text-text-muted uppercase tracking-widest mb-2">Location</h4>
+                <div className="text-sm text-text-strong">Based in Morocco</div>
+                <div className="text-sm text-text-muted">Available Remote</div>
+              </div>
             </div>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="md:col-span-5">
-                <div className="bg-surface/80 backdrop-blur-sm border border-line p-8 relative">
+                <div className="bg-surface/80 backdrop-blur-sm border border-line/70 p-8 relative rounded-2xl shadow-card">
                 <div className="absolute top-0 right-0 p-2">
                     <div className="flex gap-1">
                         <div className="w-1 h-1 bg-text-muted rounded-full"></div>
@@ -52,10 +56,10 @@ export const About = () => {
                         <div className="w-1 h-1 bg-text-muted rounded-full"></div>
                     </div>
                 </div>
-                <h3 className="font-mono uppercase text-sm font-bold text-accent mb-6">Education Log</h3>
+                <h3 className="font-mono uppercase text-sm font-bold text-accent mb-6 tracking-[0.2em]">Education Log</h3>
                 <div className="space-y-8">
                     {EDUCATION.map(edu => (
-                    <div key={edu.id} className="relative pl-6 border-l border-line-strong">
+                    <div key={edu.id} className="relative pl-6 border-l border-line-strong/70">
                         <div className="absolute -left-[3px] top-1.5 w-[5px] h-[5px] bg-accent rounded-full"></div>
                         <div className="text-text-strong font-medium mb-1">{edu.degree}</div>
                         <div className="text-xs font-mono text-text-muted flex justify-between uppercase tracking-wide mb-2">

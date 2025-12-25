@@ -52,13 +52,13 @@ export const Hero = () => {
     <section 
       ref={ref} 
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen pt-32 pb-20 px-6 flex flex-col justify-center max-w-[1200px] mx-auto border-x border-line/30 overflow-hidden group"
+      className="relative min-h-screen pt-36 pb-24 px-6 flex flex-col justify-center max-w-[1200px] mx-auto border-x border-line/20 overflow-hidden group"
     >
       {/* --- 3. BACKGROUND: Dynamic Grid & Spotlight --- */}
       
       {/* The Grid Pattern (SVG) */}
-      <div className="absolute inset-0 z-[-1] opacity-20 pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, var(--text-muted) 1px, transparent 0)', backgroundSize: '40px 40px' }}>
+      <div className="absolute inset-0 z-[-1] opacity-15 pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, var(--text-muted) 1px, transparent 0)', backgroundSize: '48px 48px' }}>
       </div>
 
       {/* The Spotlight (Reveals content/grid around mouse) */}
@@ -68,7 +68,7 @@ export const Hero = () => {
           background: useMotionTemplate`
             radial-gradient(
               650px circle at ${mouseX}px ${mouseY}px,
-              rgba(32, 194, 14, 0.1),
+              rgba(56, 230, 165, 0.12),
               transparent 80%
             )
           `,
@@ -76,29 +76,29 @@ export const Hero = () => {
       />
 
       {/* --- 4. DECOR: Rotating Radar & Data Lines --- */}
-      <motion.div style={{ y, opacity }} className="absolute top-10 right-0 lg:right-10 pointer-events-none hidden lg:block z-0">
+      <motion.div style={{ y, opacity }} className="absolute top-10 right-0 lg:right-6 pointer-events-none hidden lg:block z-0 opacity-80">
         <div className="relative w-96 h-96">
             {/* Spinning Rings */}
             <motion.div 
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border border-line/20 rounded-full border-dashed"
+                className="absolute inset-0 border border-line/25 rounded-full border-dashed"
             />
             <motion.div 
                 animate={{ rotate: -360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-4 border border-line/10 rounded-full"
+                className="absolute inset-4 border border-line/15 rounded-full"
             />
              {/* The "Scanner" */}
             <motion.div 
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-transparent to-accent/20 w-full h-full"
+                className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-transparent to-accent/25 w-full h-full"
                 style={{ clipPath: 'polygon(0 0, 100% 0, 100% 50%, 50% 50%)' }}
             />
             {/* Central Core */}
             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 bg-accent/5 backdrop-blur-sm border border-accent/30 rounded-full flex items-center justify-center">
+                <div className="w-24 h-24 bg-accent/10 backdrop-blur-sm border border-accent/30 rounded-full flex items-center justify-center shadow-glow">
                     <Cpu className="text-accent animate-pulse" size={32} />
                 </div>
             </div>
@@ -113,68 +113,75 @@ export const Hero = () => {
         className="relative z-10 max-w-5xl"
       >
         {/* Status Line */}
-        <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-8">
-          <div className="flex gap-1">
-             <span className="w-1 h-1 bg-accent rounded-full animate-ping" />
-             <span className="w-1 h-1 bg-accent rounded-full" />
-          </div>
-          <div className="px-3 py-1 border border-accent/30 bg-accent/5 rounded-full backdrop-blur-md">
-            <span className="font-mono text-accent text-[10px] uppercase tracking-widest flex items-center gap-2">
-              <Wifi size={10} /> System Operational
-            </span>
-          </div>
+        <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 mb-10 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
+          <span className="inline-flex items-center gap-2 rounded-full border border-line-strong/70 bg-bg-elev-1/60 px-4 py-2 text-text-strong">
+            <span className="h-2 w-2 rounded-full bg-accent shadow-glow" />
+            Open for select engagements
+          </span>
+          <span className="h-px w-10 bg-line/70"></span>
+          <span className="flex items-center gap-2">
+            <Wifi size={12} className="text-accent" /> AI Systems Engineer
+          </span>
         </motion.div>
 
         {/* The Name (Decryption Effect) */}
         <motion.div variants={fadeInUp} className="overflow-hidden">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.9] tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted mb-6">
+          <h1 className="text-[clamp(3rem,8vw,7.5rem)] font-display font-black leading-[0.92] tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted mb-6">
             <ScrambleText text="ISMAIL" /> <br />
-            <span className="text-line-strong opacity-50"><ScrambleText text="AMMAR" /></span>
-            </h1>
+            <span className="text-line-strong opacity-60"><ScrambleText text="AMMAR" /></span>
+          </h1>
         </motion.div>
 
         {/* The Pitch */}
-        <motion.div variants={fadeInUp} className="flex flex-col md:flex-row gap-8 md:items-end mb-16">
+        <motion.div variants={fadeInUp} className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] items-end mb-14">
+          <div className="space-y-6">
             <div className="max-w-xl border-l-2 border-accent/50 pl-6 relative">
-                <motion.div 
-                    initial={{ height: 0 }} 
-                    animate={{ height: "100%" }} 
-                    transition={{ duration: 1, delay: 1 }}
-                    className="absolute left-[-2px] top-0 w-[2px] bg-accent" 
-                />
-                <p className="text-xl md:text-2xl text-text font-light leading-relaxed">
-                  Architecting <span className="text-text-strong font-medium relative inline-block">
-                    neural networks
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accent opacity-40"></span>
-                  </span> and scalable systems. I turn complex research into production-grade reality.
-                </p>
+              <motion.div 
+                initial={{ height: 0 }} 
+                animate={{ height: "100%" }} 
+                transition={{ duration: 1, delay: 1 }}
+                className="absolute left-[-2px] top-0 w-[2px] bg-accent" 
+              />
+              <p className="text-xl md:text-2xl text-text font-light leading-relaxed">
+                I design and ship <span className="text-text-strong font-medium relative inline-block">
+                  AI systems
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accent opacity-40"></span>
+                </span> that scale. From RAG pipelines to resilient backends, I turn research into reliable products.
+              </p>
             </div>
-            
-            {/* Stats / Tech Stack Mini-Grid */}
-            <div className="grid grid-cols-2 gap-4 font-mono text-xs text-text-muted">
-                <div className="flex items-center gap-3">
-                    <Activity className="text-accent" size={16} />
-                    <span>MLOps Specialist</span>
-                </div>
-                <div className="flex items-center gap-3">
-                    <Terminal className="text-accent" size={16} />
-                    <span>Full-Stack Eng.</span>
-                </div>
-                <div className="col-span-2 h-px bg-line/50 w-full my-1"></div>
-                <div className="col-span-2 text-[10px] opacity-60">
-                    LATENCY: 12ms // LOCATION: MOROCCO
-                </div>
+
+            <div className="flex flex-wrap gap-3 text-[11px] font-mono uppercase tracking-widest text-text-muted">
+              <span className="rounded-full border border-line/70 bg-bg-elev-1/60 px-4 py-2">RAG + MLOps</span>
+              <span className="rounded-full border border-line/70 bg-bg-elev-1/60 px-4 py-2">Production AI</span>
+              <span className="rounded-full border border-line/70 bg-bg-elev-1/60 px-4 py-2">Secure Systems</span>
             </div>
+          </div>
+          
+          {/* Stats / Focus Grid */}
+          <div className="grid grid-cols-2 gap-4 font-mono text-[11px] uppercase tracking-widest text-text-muted">
+            <div className="flex items-center gap-3 rounded-xl border border-line/70 bg-bg-elev-1/60 px-4 py-4">
+              <Activity className="text-accent" size={16} />
+              <span>MLOps + LLMs</span>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-line/70 bg-bg-elev-1/60 px-4 py-4">
+              <Terminal className="text-accent" size={16} />
+              <span>Full-Stack Eng</span>
+            </div>
+            <div className="col-span-2 flex items-center justify-between rounded-xl border border-line/70 bg-bg-elev-1/60 px-4 py-4 text-[10px]">
+              <span className="text-text-muted">Based in Morocco</span>
+              <span className="text-text-strong">Remote / Hybrid</span>
+            </div>
+          </div>
         </motion.div>
 
         {/* --- 6. ACTIONS: Magnetic & Glitch Buttons --- */}
         <motion.div variants={fadeInUp} className="flex flex-wrap gap-5">
           <ButtonGlitch href="#work" primary>
-            Initialize Project Viewer
+            View Selected Work
           </ButtonGlitch>
           
-          <ButtonGlitch href={SOCIALS.github}>
-            Github Protocol
+          <ButtonGlitch href={SOCIALS.resume}>
+            Download Resume
           </ButtonGlitch>
         </motion.div>
       </motion.div>
@@ -184,13 +191,14 @@ export const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: DURATION.lg }}
-        className="absolute bottom-10 left-6 right-6 flex justify-between items-end border-t border-line/30 pt-6"
+        className="absolute bottom-10 left-6 right-6 flex flex-wrap justify-between items-end gap-6 border-t border-line/30 pt-6"
       >
-         <div className="font-mono text-[10px] text-text-muted uppercase tracking-widest flex gap-4">
-            <span>Scroll Index: 001</span>
-            <span className="animate-pulse">_CursorActive</span>
+         <div className="font-mono text-[10px] text-text-muted uppercase tracking-[0.3em] flex items-center gap-4">
+            <span>Scroll to explore</span>
+            <span className="h-px w-10 bg-line/70"></span>
+            <span>Selected work + impact</span>
          </div>
-         <div className="font-mono text-[10px] text-text-muted">V 2.0.5 [STABLE]</div>
+         <div className="font-mono text-[10px] text-text-muted uppercase tracking-[0.25em]">Based in Morocco</div>
       </motion.div>
     </section>
   );
@@ -201,8 +209,10 @@ const ButtonGlitch = ({ children, href, primary = false }: { children: React.Rea
     return (
         <motion.a 
             href={href}
-            className={`relative px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest overflow-hidden group ${
-                primary ? 'bg-accent text-bg' : 'bg-transparent text-text border border-line-strong'
+            className={`relative inline-flex items-center gap-3 rounded-full border px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] overflow-hidden group transition-all ${
+                primary
+                  ? 'bg-accent text-bg border-accent shadow-glow hover:shadow-[0_0_24px_rgba(56,230,165,0.35)]'
+                  : 'bg-bg-elev-1/60 text-text border-line-strong/70 hover:border-accent/60 hover:text-text-strong'
             }`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -211,12 +221,10 @@ const ButtonGlitch = ({ children, href, primary = false }: { children: React.Rea
                 {children} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </div>
             
-            {/* Scanline Effect on Hover */}
-            <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-[-100%] transition-transform duration-300 ease-in-out z-0" />
-            
-            {/* Glitch Corners */}
-            <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-current opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-current opacity-0 group-hover:opacity-100 transition-opacity" />
+            {/* Subtle sheen */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute -inset-8 bg-[radial-gradient(circle_at_30%_20%,_rgba(255,255,255,0.35),_transparent_45%)]" />
+            </div>
         </motion.a>
     );
 };

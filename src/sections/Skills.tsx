@@ -79,11 +79,11 @@ export const Skills = () => {
   };
 
   return (
-    <section id="skills" className="relative py-32 bg-bg-elev-1/80 backdrop-blur-md px-6 border-y border-line overflow-hidden">
+    <section id="skills" className="relative py-32 bg-bg-elev-1/80 backdrop-blur-md px-6 border-y border-line/60 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-20 left-10 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-accent-2/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(32,194,14,0.18)_1px,_transparent_1px)] bg-[length:36px_36px] opacity-15" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(56,230,165,0.18)_1px,_transparent_1px)] bg-[length:36px_36px] opacity-15" />
         <motion.div
           initial={{ x: '-20%' }}
           animate={{ x: '120%' }}
@@ -105,12 +105,12 @@ export const Skills = () => {
         className="relative z-10 max-w-[1200px] mx-auto"
       >
         <div className="flex items-center gap-4 mb-16">
-            <motion.span variants={fadeInUp} className="font-mono text-accent text-sm">02</motion.span>
-            <motion.h2 variants={fadeInUp} className="text-2xl font-display font-bold tracking-tight text-text-strong">TECHNICAL ARSENAL</motion.h2>
+            <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-[0.3em]">02</motion.span>
+            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-text-strong">TECHNICAL ARSENAL</motion.h2>
             <motion.div variants={revealLine} className="h-px bg-line flex-grow"></motion.div>
         </div>
 
-        <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 mb-10 text-[11px] font-mono uppercase tracking-widest text-text-muted">
+        <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 mb-10 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
           <span className="flex items-center gap-2">
             <Sparkles size={12} className="text-accent" />
             {totalSkills} Skills Loaded
@@ -131,7 +131,7 @@ export const Skills = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -6 }}
                 transition={{ duration: DURATION.sm, ease: EASE_OUT }}
-                className="group relative bg-bg-elev-1/60 p-6 border border-line hover:bg-surface/80 transition-colors backdrop-blur-sm overflow-hidden rounded-[6px]"
+                className="group relative bg-bg-elev-1/70 p-6 border border-line/70 hover:bg-surface/80 transition-colors backdrop-blur-sm overflow-hidden rounded-2xl shadow-card"
               >
                 <div className="absolute inset-0 pointer-events-none">
                   <div className={`absolute -inset-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${glow}`} />
@@ -157,9 +157,9 @@ export const Skills = () => {
                           key={skill}
                           value={skill}
                           whileHover={{ y: -2 }}
-                          whileDrag={{ scale: 1.03, boxShadow: '0 0 18px rgba(32, 194, 14, 0.35)' }}
+                          whileDrag={{ scale: 1.03, boxShadow: '0 0 18px rgba(56, 230, 165, 0.35)' }}
                           transition={{ duration: DURATION.xs, ease: EASE_OUT }}
-                          className="group/skill relative flex items-center gap-3 rounded-[8px] border border-line bg-bg/50 px-3 py-2 text-sm font-mono text-text-muted backdrop-blur-sm cursor-grab active:cursor-grabbing transition-colors"
+                          className="group/skill relative flex items-center gap-3 rounded-lg border border-line/70 bg-bg/40 px-3 py-2 text-sm font-mono text-text-muted backdrop-blur-sm cursor-grab active:cursor-grabbing transition-colors"
                         >
                           <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-line-strong/60 bg-bg-elev-2/70 text-accent transition-colors group-hover/skill:border-accent/50 group-hover/skill:bg-accent group-hover/skill:text-bg">
                             <Icon size={16} />
