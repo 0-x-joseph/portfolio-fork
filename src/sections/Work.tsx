@@ -67,12 +67,12 @@ export const Work = () => {
                 
                 {/* Featured Badge */}
                 {p.featured && (
-                    <div className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-accent/10 border border-accent/30 text-[9px] font-mono text-accent uppercase tracking-[0.2em]">
+                    <div className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-accent/10 border border-accent/30 text-[9px] mb-1 font-mono text-accent uppercase tracking-[0.2em]">
                         Featured
                     </div>
                 )}
 
-                <div className="flex justify-between items-start mb-4 mt-2">
+                <div className={`flex justify-between items-start mb-4 ${p.featured ? 'mt-8' : 'mt-2'}`}>
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2 mb-1">
                             <span className={`w-1.5 h-1.5 rounded-full transition-all ${p.featured ? 'bg-accent shadow-[0_0_8px_rgba(56,230,165,0.8)]' : 'bg-accent/50 group-hover:bg-accent group-hover:shadow-[0_0_8px_rgba(56,230,165,0.6)]'}`}></span>
