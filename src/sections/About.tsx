@@ -5,9 +5,9 @@ import { fadeInUp, staggerContainer, revealLine } from '../utils/motion';
 
 export const About = () => {
   return (
-    <section id="about" className="relative py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
+    <section id="about" className="section-shell py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-10 right-[-5%] h-56 w-56 rounded-full bg-accent/10 blur-[100px]" />
+        <div className="absolute -top-10 right-[-5%] h-56 w-56 rounded-full bg-accent-3/10 blur-[100px]" />
       </div>
       <motion.div
          variants={staggerContainer}
@@ -18,8 +18,8 @@ export const About = () => {
       >
         <div className="flex items-center gap-4 mb-16">
             <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-wider">01</motion.span>
-            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-text-strong">OPERATIONAL PROFILE</motion.h2>
-            <motion.div variants={revealLine} className="h-px bg-line flex-grow"></motion.div>
+            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted">OPERATIONAL PROFILE</motion.h2>
+            <motion.div variants={revealLine} className="h-px flex-grow bg-gradient-to-r from-line via-accent-3/40 to-line"></motion.div>
         </div>
 
         <div className="grid md:grid-cols-12 gap-16">
@@ -48,7 +48,7 @@ export const About = () => {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="md:col-span-5">
-                <div className="bg-surface/80 backdrop-blur-sm border border-line/70 p-8 relative rounded-2xl shadow-card">
+                <div className="bg-bg-elev-1/70 backdrop-blur-sm border border-line/70 p-8 relative rounded-2xl shadow-card">
                 <div className="absolute top-0 right-0 p-2">
                     <div className="flex gap-1">
                         <div className="w-1 h-1 bg-text-muted rounded-full"></div>
@@ -56,7 +56,7 @@ export const About = () => {
                         <div className="w-1 h-1 bg-text-muted rounded-full"></div>
                     </div>
                 </div>
-                <h3 className="font-mono uppercase text-sm font-bold text-accent mb-6 tracking-wider">Education Log</h3>
+                <h3 className="font-mono uppercase text-sm font-bold text-accent-2 mb-6 tracking-wider">Education Log</h3>
                 <div className="space-y-8">
                     {EDUCATION.map(edu => (
                     <div key={edu.id} className="relative pl-6 border-l border-line-strong/70">

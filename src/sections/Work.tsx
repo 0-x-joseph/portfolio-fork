@@ -19,7 +19,7 @@ export const Work = () => {
     });
 
   return (
-    <section id="work" className="py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
+    <section id="work" className="section-shell py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
       <motion.div 
         variants={staggerContainer}
         initial="initial"
@@ -29,12 +29,12 @@ export const Work = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-16 gap-6">
             <div className="flex items-center gap-4">
                 <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-wider">03</motion.span>
-                <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-text-strong">SELECTED WORK</motion.h2>
-                <motion.div variants={revealLine} className="h-px bg-line w-12 md:w-32"></motion.div>
+                <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted">SELECTED WORK</motion.h2>
+                <motion.div variants={revealLine} className="h-px w-12 md:w-32 bg-gradient-to-r from-line via-accent-3/40 to-line"></motion.div>
             </div>
 
             <motion.div variants={fadeInUp} className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-                <Filter size={14} className="text-text-muted mr-2 shrink-0" />
+                <Filter size={14} className="text-accent-3/70 mr-2 shrink-0" />
                 {['All', 'AI', 'Web', 'Sys', 'Sec', 'Gfx'].map(f => (
                 <button 
                     key={f}
@@ -117,7 +117,7 @@ export const Work = () => {
                 <div className="mt-auto pl-3.5">
                     {p.impact && (
                         <div className="mb-4 pb-4 border-b border-line/50 border-dashed">
-                            <div className="text-xs font-mono text-text-muted uppercase tracking-wider mb-1">Impact</div>
+                            <div className="text-xs font-mono text-accent-2/80 uppercase tracking-wider mb-1">Impact</div>
                             <div className="text-xs text-text-strong font-medium">{p.impact}</div>
                         </div>
                     )}
@@ -142,6 +142,7 @@ export const Work = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
       </motion.div>
     </section>
   );

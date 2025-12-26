@@ -58,9 +58,9 @@ const SKILL_ICONS: Record<string, LucideIcon> = {
 
 const CARD_GLOWS = [
   'from-accent/25 via-transparent to-accent-2/20',
-  'from-accent-2/20 via-transparent to-accent/25',
-  'from-accent/20 via-transparent to-accent/20',
-  'from-accent/25 via-transparent to-accent/15',
+  'from-accent-2/20 via-transparent to-accent-3/20',
+  'from-accent-3/20 via-transparent to-accent/20',
+  'from-accent/25 via-transparent to-accent-3/15',
 ];
 
 export const Skills = () => {
@@ -80,11 +80,10 @@ export const Skills = () => {
   };
 
   return (
-    <section id="skills" className="relative py-32 bg-bg-elev-1/80 backdrop-blur-md px-6 border-y border-line/60 overflow-hidden">
+    <section id="skills" className="section-shell py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-20 left-10 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
           <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-accent-2/10 blur-3xl" />
-          <div className="absolute inset-0 text-accent/20 bg-[radial-gradient(circle,_currentColor_1px,_transparent_1px)] bg-[length:36px_36px] opacity-15" />
         <motion.div
           initial={reduceMotion ? { x: 0 } : { x: '-20%' }}
           animate={reduceMotion ? { x: 0 } : { x: '120%' }}
@@ -95,7 +94,7 @@ export const Skills = () => {
           initial={reduceMotion ? { x: 0 } : { x: '120%' }}
           animate={reduceMotion ? { x: 0 } : { x: '-20%' }}
           transition={reduceMotion ? { duration: 0 } : { duration: 9, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-20 h-px w-1/2 bg-gradient-to-r from-transparent via-accent-2/40 to-transparent opacity-40"
+          className="absolute bottom-20 h-px w-1/2 bg-gradient-to-r from-transparent via-accent-3/40 to-transparent opacity-40"
         />
       </div>
       <motion.div 
@@ -103,12 +102,12 @@ export const Skills = () => {
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative z-10 max-w-[1200px] mx-auto"
+        className="relative z-10"
       >
         <div className="flex items-center gap-4 mb-16">
             <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-wider">02</motion.span>
-            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-text-strong">TECHNICAL ARSENAL</motion.h2>
-            <motion.div variants={revealLine} className="h-px bg-line flex-grow"></motion.div>
+            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted">TECHNICAL ARSENAL</motion.h2>
+            <motion.div variants={revealLine} className="h-px flex-grow bg-gradient-to-r from-line via-accent-3/40 to-line"></motion.div>
         </div>
 
         <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 mb-10 text-xs sm:text-sm font-mono uppercase tracking-wider text-text-muted">
@@ -118,7 +117,7 @@ export const Skills = () => {
           </span>
           <span className="h-px w-8 bg-line"></span>
           <span className="flex items-center gap-2">
-            <GripVertical size={12} />
+            <GripVertical size={12} className="text-accent-3" />
             Drag modules to reorder
           </span>
         </motion.div>
@@ -132,7 +131,7 @@ export const Skills = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -6 }}
                 transition={{ duration: DURATION.sm, ease: EASE_OUT }}
-                className="group relative bg-bg-elev-1/70 p-6 border border-line/70 hover:bg-surface/80 transition-colors backdrop-blur-sm overflow-hidden rounded-2xl shadow-card"
+                className="group relative bg-bg-elev-1/70 p-6 border border-line/70 hover:bg-bg-elev-1/80 transition-colors backdrop-blur-sm overflow-hidden rounded-2xl shadow-card"
               >
                 <div className="absolute inset-0 pointer-events-none">
                   <div className={`absolute -inset-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${glow}`} />
@@ -140,7 +139,7 @@ export const Skills = () => {
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-mono text-accent text-xs uppercase tracking-wider flex items-center gap-2">
+                    <h3 className="font-mono text-accent-2 text-xs uppercase tracking-wider flex items-center gap-2">
                       {cat.name}
                     </h3>
                     <span className="text-xs font-mono uppercase tracking-wider text-text-muted">{cat.skills.length} units</span>
@@ -166,7 +165,7 @@ export const Skills = () => {
                             <Icon size={16} />
                           </span>
                           <span className="transition-colors group-hover/skill:text-text-strong">{skill}</span>
-                          <span className="ml-auto text-text-muted/60 transition-colors group-hover/skill:text-accent">
+                          <span className="ml-auto text-text-muted/60 transition-colors group-hover/skill:text-accent-3">
                             <GripVertical size={14} />
                           </span>
                           <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/skill:opacity-100 transition-opacity">

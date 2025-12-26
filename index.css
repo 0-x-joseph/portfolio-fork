@@ -6,11 +6,12 @@
   --text-strong: #e7edf3;
   --text: #cbd5df;
   --text-muted: #8e9aa7;
-  --accent: #38e6a5;
-  --accent-2: #f0a15a;
+  --accent: #34c89a;
+  --accent-2: #d29a69;
+  --accent-3: #6b8fd2;
   --line: #1d2630;
   --line-strong: #2a3440;
-  --focus: #98f2cb;
+  --focus: #9fe7cb;
   --shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   --glow: 0 0 20px color-mix(in srgb, var(--accent) 25%, transparent);
 }
@@ -19,7 +20,8 @@ body {
   background-color: var(--bg);
   background-image:
     radial-gradient(1200px circle at 8% -10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 55%),
-    radial-gradient(900px circle at 95% 15%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 55%);
+    radial-gradient(900px circle at 95% 15%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 55%),
+    radial-gradient(1000px circle at 60% 120%, color-mix(in srgb, var(--accent-3) 14%, transparent), transparent 60%);
   color: var(--text);
   font-family: 'IBM Plex Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -80,4 +82,18 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-clamp: 3;
+}
+
+/* Shared section backdrop to mirror hero styling */
+.section-shell {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-image:
+    radial-gradient(700px circle at 10% -20%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+    radial-gradient(600px circle at 110% 10%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 60%),
+    radial-gradient(800px circle at 50% 120%, color-mix(in srgb, var(--accent-3) 10%, transparent), transparent 65%),
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--text-muted) 20%, transparent) 1px, transparent 0);
+  background-size: auto, auto, auto, 48px 48px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
 }

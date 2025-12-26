@@ -4,9 +4,11 @@ import { Calendar } from 'lucide-react';
 import { EXPERIENCE } from '../constants';
 import { EASE_OUT, fadeInUp, staggerContainer, revealLine } from '../utils/motion';
 
+  
 export const Experience = () => {
   return (
-    <section id="experience" className="py-32 px-6 max-w-[1000px] mx-auto border-x border-line/20">
+    
+    <section id="experience" className="section-shell py-32 px-6 max-w-[1000px] mx-auto border-x border-line/20">
       <motion.div 
         variants={staggerContainer}
         initial="initial"
@@ -16,8 +18,8 @@ export const Experience = () => {
       >
         <div className="flex items-center gap-4 mb-16">
             <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-wider">04</motion.span>
-            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-text-strong">EXPERIENCE</motion.h2>
-            <motion.div variants={revealLine} className="h-px bg-line flex-grow"></motion.div>
+            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted">EXPERIENCE</motion.h2>
+            <motion.div variants={revealLine} className="h-px flex-grow bg-gradient-to-r from-line via-accent-3/40 to-line"></motion.div>
         </div>
 
         <div className="relative">
@@ -37,7 +39,7 @@ export const Experience = () => {
                 className="relative flex flex-col md:flex-row gap-8 md:gap-0 group"
               >
                 <div className="md:w-[30%] md:pr-12 md:text-right flex flex-col md:items-end">
-                   <div className="inline-flex items-center gap-2 font-mono text-accent text-xs uppercase tracking-wider mb-2 bg-accent/5 px-3 py-1.5 rounded-full border border-accent/20">
+                   <div className="inline-flex items-center gap-2 font-mono text-accent-3 text-xs uppercase tracking-wider mb-2 bg-accent-3/10 px-3 py-1.5 rounded-full border border-accent-3/30">
                       <Calendar size={12} />
                       {exp.period}
                    </div>

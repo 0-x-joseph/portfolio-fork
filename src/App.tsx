@@ -54,6 +54,7 @@ const App = () => {
       {/* Ambient Light Wash */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute -top-32 left-[-10%] h-[320px] w-[320px] sm:h-[420px] sm:w-[420px] rounded-full bg-accent/10 blur-[90px] sm:blur-[120px]" />
+        <div className="absolute top-[25%] right-[15%] h-[260px] w-[260px] sm:h-[340px] sm:w-[340px] rounded-full bg-accent-3/10 blur-[90px] sm:blur-[120px]" />
         <div className="absolute bottom-[-20%] right-[-10%] h-[380px] w-[380px] sm:h-[520px] sm:w-[520px] rounded-full bg-accent-2/10 blur-[100px] sm:blur-[140px]" />
       </div>
       
@@ -83,6 +84,10 @@ const App = () => {
         <About />
         <Skills />
         <Work />
+        <div
+          className="max-w-[1200px] mx-auto border-t border-line/60"
+          aria-hidden="true"
+        />
         <Experience />
       </main>
       <Footer />
