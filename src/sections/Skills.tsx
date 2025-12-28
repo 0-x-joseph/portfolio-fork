@@ -80,10 +80,10 @@ export const Skills = () => {
   };
 
   return (
-    <section id="skills" className="section-shell py-32 px-6 max-w-[1200px] mx-auto border-x border-line/20">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-20 left-10 h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-accent-2/10 blur-3xl" />
+    <section id="skills" className="section-shell px-6 py-28 lg:px-12">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-20 left-10 h-64 w-64 rounded-full bg-accent/18 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-accent-2/18 blur-[120px]" />
         <motion.div
           initial={reduceMotion ? { x: 0 } : { x: '-20%' }}
           animate={reduceMotion ? { x: 0 } : { x: '120%' }}
@@ -97,52 +97,50 @@ export const Skills = () => {
           className="absolute bottom-20 h-px w-1/2 bg-gradient-to-r from-transparent via-accent-3/40 to-transparent opacity-40"
         />
       </div>
-      <motion.div 
+      <motion.div
         variants={staggerContainer}
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative z-10"
+        className="relative z-10 mx-auto max-w-[1600px]"
       >
-        <div className="flex items-center gap-4 mb-16">
-            <motion.span variants={fadeInUp} className="font-mono text-accent text-sm uppercase tracking-wider">02</motion.span>
-            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-strong via-text to-text-muted">TECHNICAL ARSENAL</motion.h2>
-            <motion.div variants={revealLine} className="h-px flex-grow bg-gradient-to-r from-line via-accent-3/40 to-line"></motion.div>
+        <div className="mb-10 flex flex-wrap items-center gap-4">
+          <motion.span variants={fadeInUp} className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">02</motion.span>
+          <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-display font-semibold text-text-strong">Technical Arsenal</motion.h2>
+          <motion.div variants={revealLine} className="h-px flex-grow bg-gradient-to-r from-line via-accent-3/40 to-line" />
         </div>
 
-        <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-4 mb-10 text-xs sm:text-sm font-mono uppercase tracking-wider text-text-muted">
+        <motion.div variants={fadeInUp} className="mb-10 flex flex-wrap items-center gap-4 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
           <span className="flex items-center gap-2">
             <Sparkles size={12} className="text-accent" />
             {totalSkills} Skills Loaded
           </span>
-          <span className="h-px w-8 bg-line"></span>
+          <span className="h-px w-8 bg-line" />
           <span className="flex items-center gap-2">
             <GripVertical size={12} className="text-accent-3" />
             Drag modules to reorder
           </span>
         </motion.div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {skillGroups.map((cat, index) => {
             const glow = CARD_GLOWS[index % CARD_GLOWS.length];
             return (
-              <motion.div 
-                key={cat.name} 
+              <motion.div
+                key={cat.name}
                 variants={fadeInUp}
                 whileHover={{ y: -6 }}
                 transition={{ duration: DURATION.sm, ease: EASE_OUT }}
-                className="group relative bg-bg-elev-1/70 p-6 border border-line/70 hover:bg-bg-elev-1/80 transition-colors backdrop-blur-sm overflow-hidden rounded-2xl shadow-card"
+                className="group relative overflow-hidden rounded-[26px] border border-line/70 bg-bg-elev-1/80 p-6 shadow-card transition-colors hover:bg-bg-elev-1/90"
               >
                 <div className="absolute inset-0 pointer-events-none">
-                  <div className={`absolute -inset-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${glow}`} />
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className={`absolute -inset-0.5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br ${glow}`} />
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 </div>
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-mono text-accent-2 text-xs uppercase tracking-wider flex items-center gap-2">
-                      {cat.name}
-                    </h3>
-                    <span className="text-xs font-mono uppercase tracking-wider text-text-muted">{cat.skills.length} units</span>
+                  <div className="mb-6 flex items-center justify-between">
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent-2">{cat.name}</h3>
+                    <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">{cat.skills.length} units</span>
                   </div>
                   <Reorder.Group
                     axis="y"
@@ -159,16 +157,16 @@ export const Skills = () => {
                           whileHover={{ y: -2 }}
                           whileDrag={{ scale: 1.03, boxShadow: 'var(--glow)' }}
                           transition={{ duration: DURATION.xs, ease: EASE_OUT }}
-                          className="group/skill relative flex items-center gap-3 rounded-lg border border-line/70 bg-bg/40 px-3 py-2 text-sm font-mono text-text-muted backdrop-blur-sm cursor-grab active:cursor-grabbing transition-colors"
+                          className="group/skill relative flex items-center gap-3 rounded-2xl border border-line/70 bg-bg/70 px-3 py-2 text-sm font-mono text-text-muted backdrop-blur-sm cursor-grab active:cursor-grabbing transition-colors"
                         >
-                          <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-line-strong/60 bg-bg-elev-2/70 text-accent transition-colors group-hover/skill:border-accent/50 group-hover/skill:bg-accent group-hover/skill:text-bg">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-line-strong/60 bg-bg-elev-2/80 text-accent transition-colors group-hover/skill:border-accent/50 group-hover/skill:bg-accent group-hover/skill:text-bg">
                             <Icon size={16} />
                           </span>
                           <span className="transition-colors group-hover/skill:text-text-strong">{skill}</span>
                           <span className="ml-auto text-text-muted/60 transition-colors group-hover/skill:text-accent-3">
                             <GripVertical size={14} />
                           </span>
-                          <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/skill:opacity-100 transition-opacity">
+                          <div className="absolute inset-0 pointer-events-none opacity-0 transition-opacity group-hover/skill:opacity-100">
                             <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-accent/10 to-transparent" />
                           </div>
                         </Reorder.Item>

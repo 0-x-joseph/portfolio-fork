@@ -16,7 +16,7 @@ const App = () => {
   const liquidColors = useMemo(() => {
     if (typeof window === 'undefined') return [];
     const styles = getComputedStyle(document.documentElement);
-    return ['--bg', '--bg-elev-1', '--accent']
+    return ['--liquid-1', '--liquid-2', '--liquid-3']
       .map((token) => styles.getPropertyValue(token).trim())
       .filter(Boolean);
   }, []);
@@ -36,38 +36,38 @@ const App = () => {
         {!prefersReducedMotion && liquidColors.length === 3 && (
           <LiquidEther 
             colors={liquidColors} 
-            mouseForce={6}
-            cursorSize={160}
+            mouseForce={5}
+            cursorSize={220}
             isViscous={false}
-            viscous={20}
-            iterationsViscous={20}
-            iterationsPoisson={20}
-            dt={0.012}
-            resolution={0.5}
+            viscous={18}
+            iterationsViscous={18}
+            iterationsPoisson={18}
+            dt={0.014}
+            resolution={0.45}
             autoDemo={true}
-            autoSpeed={0.08}
-            autoIntensity={0.45}
+            autoSpeed={0.06}
+            autoIntensity={0.4}
           />
         )}
       </div>
 
       {/* Ambient Light Wash */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute -top-32 left-[-10%] h-[320px] w-[320px] sm:h-[420px] sm:w-[420px] rounded-full bg-accent/10 blur-[90px] sm:blur-[120px]" />
-        <div className="absolute top-[25%] right-[15%] h-[260px] w-[260px] sm:h-[340px] sm:w-[340px] rounded-full bg-accent-3/10 blur-[90px] sm:blur-[120px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] h-[380px] w-[380px] sm:h-[520px] sm:w-[520px] rounded-full bg-accent-2/10 blur-[100px] sm:blur-[140px]" />
+        <div className="absolute -top-24 left-[-12%] h-[360px] w-[360px] sm:h-[520px] sm:w-[520px] rounded-full bg-accent/12 blur-[120px]" />
+        <div className="absolute top-[20%] right-[10%] h-[280px] w-[280px] sm:h-[380px] sm:w-[380px] rounded-full bg-accent-3/12 blur-[120px]" />
+        <div className="absolute bottom-[-25%] right-[-8%] h-[420px] w-[420px] sm:h-[560px] sm:w-[560px] rounded-full bg-accent-2/14 blur-[140px]" />
       </div>
       
       {/* Cinematic Viewport Blur Effects */}
       <GradualBlur 
         target="page" 
         position="bottom" 
-        height="8rem"
+        height="6rem"
         responsive={true}
         mobileHeight="5rem"
-        tabletHeight="6rem"
-        desktopHeight="8rem"
-        strength={2} 
+        tabletHeight="5.5rem"
+        desktopHeight="6rem"
+        strength={1.6} 
         divCount={6} 
         zIndex={50} 
         opacity={1} 
@@ -85,7 +85,7 @@ const App = () => {
         <Skills />
         <Work />
         <div
-          className="max-w-[1200px] mx-auto border-t border-line/60"
+          className="max-w-[1600px] mx-auto border-t border-line/60"
           aria-hidden="true"
         />
         <Experience />

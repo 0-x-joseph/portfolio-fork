@@ -40,32 +40,41 @@ const Counter = ({ value, suffix }: { value: string, suffix?: string }) => {
 
 export const Metrics = () => {
   return (
-    <section className="section-shell py-20 px-6 max-w-[1200px] mx-auto border-x border-line/20">
-      <motion.div 
-        variants={staggerContainer}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4"
-      >
-        {METRICS.map((m, i) => (
-          <motion.div 
-            key={i} 
-            variants={fadeInUp}
-            className="relative rounded-xl border border-line/70 bg-bg-elev-1/70 p-6 md:p-8 min-h-[140px] flex flex-col justify-between hover:border-accent/40 hover:bg-bg-elev-2/80 transition-colors cursor-crosshair group overflow-hidden"
-          >
-            {/* Hover scanline effect */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent/20 via-accent-3/30 to-accent-2/20 -translate-y-full group-hover:translate-y-[900%] transition-transform duration-1000"></div>
-            
-            <div className="font-mono text-xs uppercase tracking-wider text-text-muted group-hover:text-accent-3 transition-colors">
-              <span className="text-accent-3/80 group-hover:text-accent-2">0{i + 1}</span> // {m.label}
-            </div>
-            <div className="text-4xl md:text-5xl font-display font-bold text-text-strong mt-2">
-              <Counter value={m.value} suffix={m.suffix} />
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+    <section className="section-shell px-6 py-24 lg:px-12">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">Signal</span>
+            <h2 className="text-2xl md:text-3xl font-display font-semibold text-text-strong">Impact Metrics</h2>
+          </div>
+          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted">Last 12 months</div>
+        </div>
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {METRICS.map((m, i) => (
+            <motion.div
+              key={i}
+              variants={fadeInUp}
+              className="group relative flex min-h-[150px] flex-col justify-between overflow-hidden rounded-[28px] border border-line/70 bg-bg-elev-1/80 p-6 shadow-card transition-all hover:-translate-y-1 hover:border-accent/40 hover:bg-bg-elev-2/80"
+            >
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <div className="absolute -inset-10 bg-[radial-gradient(circle_at_20%_20%,color-mix(in_srgb,var(--accent)_18%,transparent),transparent_55%)]" />
+              </div>
+              <div className="relative z-10 font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted">
+                <span className="text-accent-3">0{i + 1}</span> {m.label}
+              </div>
+              <div className="relative z-10 mt-4 text-4xl md:text-5xl font-display font-semibold text-text-strong">
+                <Counter value={m.value} suffix={m.suffix} />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 };
