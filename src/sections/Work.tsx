@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Filter, Github } from 'lucide-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { ArrowRight, ArrowUpRight, Filter, Github } from 'lucide-react';
 import { PROJECTS } from '../constants';
 import { DURATION, EASE_OUT, fadeInUp, staggerContainer, revealLine } from '../utils/motion';
 
+const MAX_VISIBLE = 6;
+
 export const Work = () => {
   const [filter, setFilter] = useState<'All' | 'AI' | 'Web' | 'Sys' | 'Sec' | 'Gfx'>('All');
+  const [showAll, setShowAll] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const pendingCollapseScroll = useRef(false);
   
   const filteredProjects = filter === 'All' 
     ? PROJECTS 
@@ -18,8 +24,36 @@ export const Work = () => {
         return false;
     });
 
+  useEffect(() => {
+    setShowAll(false);
+  }, [filter]);
+
+  const scrollToWork = useCallback(() => {
+    sectionRef.current?.scrollIntoView({
+      behavior: reduceMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  }, [reduceMotion]);
+
+  const handleToggleShowAll = useCallback(() => {
+    setShowAll((prev) => {
+      pendingCollapseScroll.current = prev;
+      return !prev;
+    });
+  }, []);
+
+  const hasMoreProjects = filteredProjects.length > MAX_VISIBLE;
+  const visibleProjects = hasMoreProjects && !showAll
+    ? filteredProjects.slice(0, MAX_VISIBLE)
+    : filteredProjects;
+  const buttonLabel = showAll ? 'View less' : 'View more';
+  const buttonHoverLabel = showAll ? 'Show less' : 'Show all';
+  const progressLabel = showAll
+    ? `Showing all ${filteredProjects.length}`
+    : `Showing ${visibleProjects.length} of ${filteredProjects.length}`;
+
   return (
-    <section id="work" className="section-shell px-6 py-28 lg:px-12">
+    <section id="work" ref={sectionRef} className="section-shell px-6 py-28 lg:px-12">
       <motion.div
         variants={staggerContainer}
         initial="initial"
@@ -54,9 +88,16 @@ export const Work = () => {
           </motion.div>
         </div>
 
-        <motion.div layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((p) => (
+        <motion.div id="work-grid" layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <AnimatePresence
+            mode="popLayout"
+            onExitComplete={() => {
+              if (!pendingCollapseScroll.current) return;
+              pendingCollapseScroll.current = false;
+              requestAnimationFrame(() => scrollToWork());
+            }}
+          >
+            {visibleProjects.map((p) => (
               <motion.div
                 layout
                 key={p.id}
@@ -148,7 +189,112 @@ export const Work = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {hasMoreProjects && (
+          <motion.div variants={fadeInUp} className="mt-10 flex flex-col items-center gap-4">
+            <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
+              <span className="h-px w-12 bg-line/70" />
+              <span>{progressLabel}</span>
+              <span className="h-px w-12 bg-line/70" />
+            </div>
+            <SlideToggleButton
+              primaryLabel={buttonLabel}
+              hoverLabel={buttonHoverLabel}
+              onClick={handleToggleShowAll}
+              aria-expanded={showAll}
+              aria-controls="work-grid"
+            />
+          </motion.div>
+        )}
       </motion.div>
     </section>
+  );
+};
+
+const SlideToggleButton = ({
+  primaryLabel,
+  hoverLabel,
+  onClick,
+  ariaExpanded,
+  ariaControls,
+}: {
+  primaryLabel: string;
+  hoverLabel: string;
+  onClick: () => void;
+  ariaExpanded?: boolean;
+  ariaControls?: string;
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!isClicked) return;
+    const timeout = window.setTimeout(() => setIsClicked(false), 650);
+    return () => window.clearTimeout(timeout);
+  }, [isClicked]);
+
+  const handleClick = () => {
+    if (isClicked) return;
+    setIsClicked(true);
+    onClick();
+  };
+
+  const handleHover = (next: boolean) => {
+    if (reduceMotion) return;
+    setIsHovered(next);
+  };
+
+  return (
+    <motion.button
+      type="button"
+      onClick={handleClick}
+      onMouseEnter={() => handleHover(true)}
+      onMouseLeave={() => handleHover(false)}
+      onFocus={() => handleHover(true)}
+      onBlur={() => handleHover(false)}
+      disabled={isClicked}
+      className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-line-strong/70 bg-bg-elev-1/80 px-7 py-3 text-[11px] font-mono uppercase tracking-[0.3em] text-text-strong transition-all duration-500 ease-out hover:border-accent/60 hover:text-accent hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-70"
+      whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+      whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+    >
+      <span className="relative z-10 flex items-center gap-3 transition-all duration-500 ease-out group-hover:-translate-x-1.5">
+        <span className="relative inline-flex min-w-[10ch] items-center">
+          <span
+            className={`transition-all duration-500 ${
+              isHovered ? 'opacity-0 -translate-y-5' : 'opacity-100 translate-y-0'
+            }`}
+          >
+            {primaryLabel}
+          </span>
+          <span
+            className={`absolute left-0 transition-all duration-500 ${
+              isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+          >
+            {hoverLabel}
+          </span>
+        </span>
+        <span className="relative ml-1 h-4 w-4">
+          <ArrowRight
+            className={`absolute left-0 top-0 h-4 w-4 transition-all duration-700 ${
+              isHovered ? 'opacity-0 -translate-y-5' : 'opacity-100 translate-y-0'
+            } ${isClicked && !reduceMotion ? 'translate-x-8 opacity-0' : ''}`}
+          />
+          <ArrowRight
+            className={`absolute left-0 top-0 h-4 w-4 transition-all duration-700 ${
+              isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            } ${isClicked && !reduceMotion ? 'translate-x-8 opacity-0' : ''}`}
+          />
+        </span>
+      </span>
+      <span className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <span className="absolute -inset-6 bg-[radial-gradient(circle_at_20%_20%,color-mix(in_srgb,var(--accent)_28%,transparent),transparent_60%)]" />
+      </span>
+      <span className="absolute inset-0 origin-left scale-x-0 bg-accent/10 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+      <span className="absolute inset-0 origin-bottom scale-y-0 bg-accent/10 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+    </motion.button>
   );
 };

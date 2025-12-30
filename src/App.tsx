@@ -3,7 +3,6 @@ import { useReducedMotion } from 'framer-motion';
 import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Hero } from './sections/Hero';
-import { Metrics } from './sections/Metrics';
 import { About } from './sections/About';
 import { Skills } from './sections/Skills';
 import { Work } from './sections/Work';
@@ -54,15 +53,26 @@ const App = () => {
       <NavBar />
       <main className="relative z-10">
         <Hero />
-        <Metrics />
         <About />
+                <div
+          className="max-w-[1600px] mx-auto border-t border-line/60"
+          aria-hidden="true"
+        />
         <Skills />
+                <div
+          className="max-w-[1600px] mx-auto border-t border-line/60"
+          aria-hidden="true"
+        />
         <Work />
         <div
           className="max-w-[1600px] mx-auto border-t border-line/60"
           aria-hidden="true"
         />
         <Experience />
+                       <div
+          className="max-w-[1600px] mx-auto border-t border-line/60"
+          aria-hidden="true"
+        />
         <Contact />
       </main>
       <Footer />

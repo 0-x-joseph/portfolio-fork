@@ -7,13 +7,6 @@ export const SOCIALS = {
   resume: "/resume.pdf"
 };
 
-export const METRICS: Metric[] = [
-  { label: "Inference Cost Reduction", value: "45", suffix: "%" },
-  { label: "Retrieval Latency", value: "<1", suffix: "s" },
-  { label: "Backend Perf Boost", value: "40", suffix: "%" },
-  { label: "Client Satisfaction", value: "100", suffix: "%" },
-];
-
 export const SKILLS: SkillCategory[] = [
   {
     name: "AI & ML",
