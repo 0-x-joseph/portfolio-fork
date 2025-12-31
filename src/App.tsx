@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Skills } from './sections/Skills';
+import { SkillProficiency } from './sections/SkillProficiency';
 import { Work } from './sections/Work';
 import { Experience } from './sections/Experience';
 import { Contact } from './sections/Contact';
@@ -179,6 +180,7 @@ const App = () => {
             <Hero />
             <About />
             <Skills />
+            <SkillProficiency />
             <Work />
             <Experience />
             <Contact />

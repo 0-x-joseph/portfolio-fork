@@ -213,7 +213,7 @@ export const Work = () => {
       >
         <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-4">
-            <motion.span variants={fadeInUp} className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">03</motion.span>
+            <motion.span variants={fadeInUp} className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">04</motion.span>
             <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-display font-semibold text-text-strong">Selected Work</motion.h2>
             <motion.div variants={revealLine} className="h-px w-16 bg-gradient-to-r from-line via-accent-3/40 to-line" />
           </div>

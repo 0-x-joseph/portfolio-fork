@@ -90,13 +90,16 @@ function Dock({
           mouseX.set(Infinity);
         }}
         className={cn(
-          'relative mx-auto flex w-fit items-end gap-4 rounded-[28px] border border-line/70 px-3 py-2 shadow-card',
+          'relative mx-auto flex w-fit items-end gap-4 rounded-[28px] border border-white/10 bg-bg-elev-1/70 px-3 py-2 shadow-card shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur-xl',
           className
         )}
         style={{ height: panelHeight }}
       >
         <div className="pointer-events-none absolute inset-0 -z-10 rounded-[28px] opacity-50 blur-2xl"
-             style={{ background: 'radial-gradient(circle at center, var(--accent), transparent)' }} />
+             style={{
+               background:
+                 'radial-gradient(120% 120% at 15% 0%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 65%), radial-gradient(120% 140% at 85% 120%, color-mix(in srgb, var(--accent-3) 30%, transparent), transparent 70%)',
+             }} />
         <div className="pointer-events-none absolute inset-0 rounded-[28px]">
           <ProgressiveBlur
             className="h-full w-full rounded-[28px]"
@@ -105,7 +108,7 @@ function Dock({
             blurIntensity={2.6}
           />
         </div>
-        <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-bg/80" />
+        <div className="pointer-events-none absolute inset-0 rounded-[28px] bg-bg-elev-1/70" />
         
         <DockContext.Provider value={{ mouseX, spring, distance, magnification }}>
           {children}
@@ -175,7 +178,7 @@ function DockLabel({ children, className, isHoveredLocal }: any) {
           animate={{ opacity: 1, y: -14, x: "-50%", scale: 1 }}
           exit={{ opacity: 0, y: 0, x: "-50%", scale: 0.8 }}
           className={cn(
-            'absolute -top-9 left-1/2 w-fit whitespace-pre rounded-full border border-line/70 bg-bg-elev-1/95 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-text-strong shadow-xl backdrop-blur-md',
+            'absolute -top-9 left-1/2 w-fit whitespace-pre rounded-full border border-white/10 bg-bg-elev-2/90 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-text-strong shadow-[0_10px_32px_rgba(0,0,0,0.45)] backdrop-blur-md',
             className
           )}
         >
@@ -201,12 +204,14 @@ function DockIcon({ children, className, size }: any) {
 }
 
 // --- Stylings (Original Borders Kept) ---
-const BASE_ICON = 'aspect-square rounded-2xl border border-line/70 bg-bg-elev-1/80 p-2 text-text-muted transition-colors duration-200 group-hover:border-accent/50 group-hover:text-accent';
-const ACCENT_ICON = 'border-accent/50 bg-accent/15 text-accent';
+const BASE_ICON = 'aspect-square rounded-2xl border border-white/10 bg-bg/60 p-2 text-text-muted transition-all duration-200 group-hover:border-accent/60 group-hover:bg-accent/10 group-hover:text-accent group-hover:shadow-glow';
+const SPECIAL_ICON = 'border-line-strong/70 bg-bg-elev-2/80 text-text-strong';
+const ACCENT_ICON = 'border-accent/60 bg-accent/20 text-accent shadow-glow';
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDockVisible, setIsDockVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const { scrollY } = useScroll();
   const items = [
     { label: "Home", icon: "IA", href: "#", special: true },
@@ -217,6 +222,21 @@ export const NavBar = () => {
     { label: "Resume", icon: <Download size="100%" />, href: SOCIALS.resume, accent: true },
   ];
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(media.matches);
+    update();
+    if (media.addEventListener) {
+      media.addEventListener('change', update);
+      return () => media.removeEventListener('change', update);
+    }
+    media.addListener(update);
+    return () => media.removeListener(update);
+  }, []);
+
+  const shouldShowDock = isDockVisible && isDesktop;
+
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsDockVisible((prev) => {
       if (!prev && latest > SCROLL_SHOW_DOCK) return true;
@@ -226,13 +246,13 @@ export const NavBar = () => {
   });
 
   useEffect(() => {
-    if (isDockVisible && isOpen) setIsOpen(false);
-  }, [isDockVisible, isOpen]);
+    if (shouldShowDock && isOpen) setIsOpen(false);
+  }, [shouldShowDock, isOpen]);
 
   return (
     <>
       <AnimatePresence>
-        {!isDockVisible && (
+        {!shouldShowDock && (
           <motion.nav
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -315,7 +335,7 @@ export const NavBar = () => {
       </AnimatePresence>
 
       <AnimatePresence>
-        {isDockVisible && (
+        {shouldShowDock && (
           <motion.nav 
             initial={{ y: 20, opacity: 0 }} 
             animate={{ y: 0, opacity: 1 }}
@@ -328,7 +348,7 @@ export const NavBar = () => {
                 {items.map((item, i) => (
                   <DockItem key={i} href={item.href}>
                     <DockLabel>{item.label}</DockLabel>
-                    <DockIcon className={cn(BASE_ICON, item.special && 'bg-bg-elev-2/80 text-text-strong', item.accent && ACCENT_ICON)}>
+                    <DockIcon className={cn(BASE_ICON, item.special && SPECIAL_ICON, item.accent && ACCENT_ICON)}>
                       {typeof item.icon === 'string' ? <span className="font-mono text-[10px] tracking-[0.2em]">{item.icon}</span> : item.icon}
                     </DockIcon>
                   </DockItem>
