@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Code, Cpu, Globe, Database, ArrowUpRight } from 'lucide-react';
+import { Github, Code, Globe, Database, ArrowUpRight, Shield } from 'lucide-react';
 import { Project } from '../types';
 import { SkillTag } from './SkillTag';
 import { DURATION, EASE_OUT, fadeInUp } from '../utils/motion';
@@ -8,7 +8,7 @@ import { DURATION, EASE_OUT, fadeInUp } from '../utils/motion';
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const getIcon = (cat: string) => {
     switch(cat) {
-      case 'AI': return <Cpu size={14} />;
+      case 'Security': return <Shield size={14} />;
       case 'Web': return <Globe size={14} />;
       case 'Infra': return <Database size={14} />;
       default: return <Code size={14} />;

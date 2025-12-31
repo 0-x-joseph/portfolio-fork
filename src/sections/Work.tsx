@@ -28,8 +28,8 @@ import type { Project } from '../types';
 import { DURATION, EASE_OUT, fadeInUp, staggerContainer, revealLine } from '../utils/motion';
 
 const MAX_VISIBLE = 6;
-type WorkFilter = 'All' | 'AI' | 'Web' | 'Sys' | 'Sec' | 'Gfx';
-const FILTERS: WorkFilter[] = ['All', 'AI', 'Web', 'Sys', 'Sec', 'Gfx'];
+type WorkFilter = 'All' | 'Fullstack' | 'Security' | 'Systems' | 'Graphics';
+const FILTERS: WorkFilter[] = ['All', 'Security', 'Fullstack', 'Systems', 'Graphics'];
 const cx = (...classes: Array<string | undefined | false | null>) =>
   classes.filter(Boolean).join(' ');
 
@@ -64,8 +64,6 @@ const TECH_ICON_MAP: Record<string, TechIconConfig> = {
   Buffer: { Icon: Shield, tone: 'text-accent-2' },
   LocalStorage: { Icon: Database, tone: 'text-accent-3' },
   Python: { Icon: Terminal, tone: 'text-accent-3' },
-  'OpenAI API': { Icon: BrainCircuit, tone: 'text-accent-3' },
-  LangChain: { Icon: BrainCircuit, tone: 'text-accent-3' },
   C: { Icon: Terminal, tone: 'text-text-strong' },
   'C++': { Icon: Terminal, tone: 'text-text-strong' },
   'Unix API': { Icon: Terminal, tone: 'text-text-strong' },
@@ -161,14 +159,17 @@ export const Work = () => {
     };
   }, []);
   
-  const filteredProjects = filter === 'All' 
-    ? PROJECTS 
-    : PROJECTS.filter(p => {
-        if (filter === 'AI') return p.category === 'AI';
-        if (filter === 'Web') return p.category === 'Web';
-        if (filter === 'Sec') return p.category === 'Security';
-        if (filter === 'Gfx') return p.category === 'Graphics & Simulation';
-        if (filter === 'Sys') return ['System', 'Infra', 'Software Engineering', 'DevOps & Utilities'].includes(p.category);
+  const filteredProjects = filter === 'All'
+    ? PROJECTS
+    : PROJECTS.filter((p) => {
+        if (filter === 'Fullstack') {
+          return ['Web', 'Software Engineering', 'System', 'Infra', 'DevOps & Utilities'].includes(p.category);
+        }
+        if (filter === 'Security') return p.category === 'Security';
+        if (filter === 'Graphics') return p.category === 'Graphics & Simulation';
+        if (filter === 'Systems') {
+          return ['System', 'Infra', 'Software Engineering', 'DevOps & Utilities'].includes(p.category);
+        }
         return false;
     });
 

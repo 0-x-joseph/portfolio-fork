@@ -61,7 +61,7 @@ export const Hero = () => {
             </span>
             <span className="h-px w-10 bg-line/70" />
             <span className="flex items-center gap-2">
-              <Sparkles size={12} className="text-accent" /> AI Systems Engineer
+              <Sparkles size={12} className="text-accent" /> Security & Full-Stack Engineer
             </span>
           </motion.div>
 
@@ -76,12 +76,12 @@ export const Hero = () => {
 
           <motion.div variants={fadeInUp} className="mt-8 max-w-2xl space-y-6 text-lg text-text md:text-xl">
             <p className="leading-relaxed">
-              I build resilient AI systems with a security mindset. From retrieval pipelines to production-grade
-              backends, I ship research into reliable products with observable, measurable impact.
+              I build resilient full-stack systems with a security-first mindset. From hardened APIs to
+              high-performance interfaces, I ship reliable products with observable, measurable impact.
             </p>
             <div className="flex flex-wrap gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
-              <span className="rounded-full border border-line/70 bg-bg-elev-1/80 px-4 py-2">RAG + MLOps</span>
-              <span className="rounded-full border border-line/70 bg-bg-elev-1/80 px-4 py-2">Production AI</span>
+              <span className="rounded-full border border-line/70 bg-bg-elev-1/80 px-4 py-2">AppSec + APIs</span>
+              <span className="rounded-full border border-line/70 bg-bg-elev-1/80 px-4 py-2">Full-Stack Delivery</span>
               <span className="rounded-full border border-line/70 bg-bg-elev-1/80 px-4 py-2">Secure Systems</span>
             </div>
           </motion.div>
@@ -104,21 +104,21 @@ export const Hero = () => {
               <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-bg/60 px-4 py-3 backdrop-blur-sm transition-colors">
                 <Cpu size={16} className="mt-1 text-accent" />
                 <div>
-                  <div className="text-text-strong">AI infrastructure</div>
-                  <div className="text-xs text-text-muted">RAG, evals, observability</div>
+                  <div className="text-text-strong">Secure backend systems</div>
+                  <div className="text-xs text-text-muted">Auth, rate limits, observability</div>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-bg/60 px-4 py-3 backdrop-blur-sm transition-colors">
                 <Shield size={16} className="mt-1 text-accent-2" />
                 <div>
-                  <div className="text-text-strong">Secure systems</div>
-                  <div className="text-xs text-text-muted">Threat-aware architecture</div>
+                  <div className="text-text-strong">Security architecture</div>
+                  <div className="text-xs text-text-muted">Threat modeling, hardening</div>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-bg/60 px-4 py-3 backdrop-blur-sm transition-colors">
                 <Sparkles size={16} className="mt-1 text-accent-3" />
                 <div>
-                  <div className="text-text-strong">Product delivery</div>
+                  <div className="text-text-strong">Full-stack delivery</div>
                   <div className="text-xs text-text-muted">Fast iteration, stable release</div>
                 </div>
               </div>

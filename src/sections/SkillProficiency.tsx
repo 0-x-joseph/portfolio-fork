@@ -3,10 +3,8 @@
 import React, { useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
-  BrainCircuit,
   Cloud,
   Code2,
-  Cpu,
   Database,
   GitBranch,
   Github,
@@ -15,63 +13,50 @@ import {
   Network,
   PenTool,
   Server,
+  Shield,
   Ship,
-  Sparkles,
   Terminal,
 } from 'lucide-react';
+import { SKILLS } from '../constants';
 import { DURATION, EASE_OUT, fadeInUp, staggerContainer, revealLine } from '../utils/motion';
 
 const cn = (...classes: Array<string | undefined | false | null>) =>
   classes.filter(Boolean).join(' ');
 
 const SKILL_PROFICIENCY: Record<string, number> = {
-  C: 95,
-  'C++': 85,
-  JavaScript: 90,
-  TypeScript: 90,
-  Python: 60,
-  React: 90,
-  'Next.js': 90,
-  'React Native': 75,
-  'Tailwind CSS': 88,
-  'Node.js': 80,
-  FastAPI: 60,
-  Django: 55,
+  C: 92,
+  'C++': 88,
+  Networking: 80,
+  Linux: 92,
+  Python: 84,
+  FastAPI: 82,
+  Django: 78,
+  'Node.js': 84,
+  NestJS: 78,
+  PostgreSQL: 82,
   MongoDB: 78,
-  'OpenAI API': 80,
-  PyTorch: 78,
+  React: 88,
+  'Next.js': 86,
+  TypeScript: 88,
+  'React Native': 74,
+  'Tailwind CSS': 90,
   AWS: 80,
-  Docker: 85,
-  Git: 88,
-  'GitHub Actions': 76,
-  Linux: 95,
-};
-
-const SKILL_CATEGORIES: Record<string, string[]> = {
-  'AI & ML': ['Python', 'OpenAI API', 'PyTorch'],
-  Languages: ['C', 'C++', 'JavaScript', 'TypeScript'],
-  Frontend: ['React', 'Next.js', 'React Native', 'Tailwind CSS'],
-  Backend: ['Node.js', 'FastAPI', 'Django', 'PostgreSQL', 'MongoDB'],
-  'DevOps & Tools': ['AWS', 'Docker', 'Kubernetes', 'Git', 'GitHub Actions', 'Linux'],
+  Docker: 86,
+  Kubernetes: 72,
+  Git: 90,
+  'GitHub Actions': 78,
 };
 
 const CATEGORY_TONES: Record<
   string,
   { icon: string; badge: string; label: string; bar: string; glow: string }
 > = {
-  'AI & ML': {
+  'Security & Systems': {
     icon: 'text-accent',
     badge: 'border-accent/40 bg-accent/10',
     label: 'text-accent/80',
     bar: 'from-accent via-accent-2/70 to-accent-3/50',
     glow: 'from-accent/30 via-transparent to-transparent',
-  },
-  Languages: {
-    icon: 'text-accent-2',
-    badge: 'border-accent-2/40 bg-accent-2/10',
-    label: 'text-accent-2/80',
-    bar: 'from-accent-2 via-accent/70 to-accent-3/40',
-    glow: 'from-accent-2/30 via-transparent to-transparent',
   },
   Frontend: {
     icon: 'text-accent-3',
@@ -80,14 +65,14 @@ const CATEGORY_TONES: Record<
     bar: 'from-accent-3 via-accent/60 to-accent-2/50',
     glow: 'from-accent-3/30 via-transparent to-transparent',
   },
-  Backend: {
-    icon: 'text-accent',
-    badge: 'border-accent/40 bg-accent/10',
-    label: 'text-accent/80',
-    bar: 'from-accent via-accent-2/70 to-accent-3/40',
-    glow: 'from-accent/25 via-transparent to-transparent',
+  'Backend & Systems': {
+    icon: 'text-accent-2',
+    badge: 'border-accent-2/40 bg-accent-2/10',
+    label: 'text-accent-2/80',
+    bar: 'from-accent-2 via-accent/70 to-accent-3/40',
+    glow: 'from-accent-2/30 via-transparent to-transparent',
   },
-  'DevOps & Tools': {
+  'DevOps & Cloud': {
     icon: 'text-text-strong',
     badge: 'border-line-strong/70 bg-bg/70',
     label: 'text-text-muted',
@@ -107,7 +92,8 @@ const DEFAULT_TONE = {
 const SKILL_ICONS: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   C: Terminal,
   'C++': Terminal,
-  JavaScript: Code2,
+  Networking: Network,
+  Linux: Terminal,
   TypeScript: Code2,
   Python: Terminal,
   React: LayoutDashboard,
@@ -117,44 +103,44 @@ const SKILL_ICONS: Record<string, React.ComponentType<{ size?: number; className
   'Node.js': Server,
   FastAPI: Network,
   Django: Layers,
+  NestJS: Layers,
   PostgreSQL: Database,
   MongoDB: Database,
-  RAG: Network,
-  'OpenAI API': Sparkles,
-  LangChain: BrainCircuit,
-  PyTorch: Cpu,
   AWS: Cloud,
   Docker: Ship,
   Kubernetes: Ship,
   Git: GitBranch,
   'GitHub Actions': Github,
-  Linux: Terminal,
+};
+
+const CATEGORY_ICONS: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  'Security & Systems': Shield,
+  'Backend & Systems': Server,
+  Frontend: LayoutDashboard,
+  'DevOps & Cloud': Cloud,
 };
 
 const CATEGORY_BUTTONS = [
   { id: 'All', label: 'All Skills', icon: Code2 },
-  { id: 'AI & ML', label: 'AI & ML', icon: BrainCircuit },
-  { id: 'Languages', label: 'Languages', icon: Code2 },
-  { id: 'Frontend', label: 'Frontend', icon: LayoutDashboard },
-  { id: 'Backend', label: 'Backend', icon: Server },
-  { id: 'DevOps & Tools', label: 'DevOps & Tools', icon: PenTool },
+  ...SKILLS.map((category) => ({
+    id: category.name,
+    label: category.name,
+    icon: CATEGORY_ICONS[category.name] ?? Code2,
+  })),
 ];
 
-const SKILL_TO_CATEGORY = Object.entries(SKILL_CATEGORIES).reduce<Record<string, string>>(
-  (acc, [category, skills]) => {
-    skills.forEach((skill) => {
-      acc[skill] = category;
-    });
-    return acc;
-  },
-  {}
-);
+const SKILL_TO_CATEGORY = SKILLS.reduce<Record<string, string>>((acc, category) => {
+  category.skills.forEach((skill) => {
+    acc[skill] = category.name;
+  });
+  return acc;
+}, {});
 
 const ALL_SKILLS = (() => {
   const seen = new Set<string>();
   const ordered: string[] = [];
-  Object.values(SKILL_CATEGORIES).forEach((skills) => {
-    skills.forEach((skill) => {
+  SKILLS.forEach((category) => {
+    category.skills.forEach((skill) => {
       if (!seen.has(skill)) {
         seen.add(skill);
         ordered.push(skill);
@@ -165,15 +151,15 @@ const ALL_SKILLS = (() => {
 })();
 
 const EXTRA_SKILLS = [
-  'System Design',
-  'CI/CD Pipelines',
-  'Observability',
+  'Secure SDLC',
   'Threat Modeling',
-  'API Security',
-  'Performance Tuning',
-  'Distributed Systems',
-  'Technical Documentation',
-  'Agile Delivery',
+  'AuthN/Z',
+  'API Hardening',
+  'Incident Response',
+  'Logging & Monitoring',
+  'Secure Code Review',
+  'Performance Profiling',
+  'Architecture Reviews',
 ];
 
 export const SkillProficiency = () => {
@@ -182,7 +168,8 @@ export const SkillProficiency = () => {
 
   const filteredSkills = useMemo(() => {
     if (activeCategory === 'All') return ALL_SKILLS;
-    return SKILL_CATEGORIES[activeCategory] ?? [];
+    const category = SKILLS.find((item) => item.name === activeCategory);
+    return category?.skills ?? [];
   }, [activeCategory]);
 
   return (
@@ -220,30 +207,30 @@ export const SkillProficiency = () => {
             <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
               <span className="flex items-center gap-2 text-text-strong">
                 <span className="h-2 w-2 rounded-full bg-accent shadow-glow" />
-                Signal strength report
+                Secure stack signal report
               </span>
               <span className="h-px w-8 bg-line/70" />
-              <span>Updated quarterly</span>
+              <span>Reviewed each release</span>
             </div>
             <p className="mt-6 max-w-2xl text-sm text-text-muted leading-relaxed">
-              A calibrated view of the tools I use to ship reliable systems. Percentages reflect real-world usage,
-              project depth, and delivery confidence across production environments.
+              A calibrated view of the full-stack and cybersecurity tooling I trust in production. Percentages
+              reflect hands-on delivery, hardening work, and confidence across frontend, backend, and infrastructure.
             </p>
           </div>
           <div className="rounded-[28px] border border-white/10 bg-bg-elev-2/70 p-6 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur">
             <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
-              <span>Coverage</span>
-              <span className="text-text-strong">{ALL_SKILLS.length} signals tracked</span>
+              <span>Stack coverage</span>
+              <span className="text-text-strong">{ALL_SKILLS.length} capabilities tracked</span>
             </div>
             <div className="mt-6 flex flex-wrap gap-2 text-[10px] font-mono uppercase tracking-[0.3em] text-text-muted">
-              {Object.keys(SKILL_CATEGORIES).map((category) => {
-                const tone = CATEGORY_TONES[category] ?? DEFAULT_TONE;
+              {SKILLS.map((category) => {
+                const tone = CATEGORY_TONES[category.name] ?? DEFAULT_TONE;
                 return (
                   <span
-                    key={category}
+                    key={category.name}
                     className={cn('rounded-full border px-3 py-1', tone.badge)}
                   >
-                    {category}
+                    {category.name}
                   </span>
                 );
               })}
@@ -350,8 +337,8 @@ export const SkillProficiency = () => {
           className="mt-12 rounded-[28px] border border-white/10 bg-bg-elev-2/70 p-6 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur"
         >
           <div className="mb-6 flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted">
-            <span>Additional skill systems</span>
-            <span className="text-text-strong">Operational readiness</span>
+            <span>Security + delivery practices</span>
+            <span className="text-text-strong">Full-stack readiness</span>
           </div>
           <div className="flex flex-wrap gap-3">
             {EXTRA_SKILLS.map((skill) => (

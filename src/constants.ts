@@ -9,8 +9,8 @@ export const SOCIALS = {
 
 export const SKILLS: SkillCategory[] = [
   {
-    name: "AI & ML",
-    skills: ["Python", "RAG", "OpenAI API"]
+    name: "Security & Systems",
+    skills: ["Linux", "Networking", "C", "C++", "Python"]
   },
   {
     name: "Backend & Systems",
@@ -22,23 +22,36 @@ export const SKILLS: SkillCategory[] = [
   },
   {
     name: "DevOps & Cloud",
-    skills: ["AWS", "Docker", "Kubernetes", "Linux", "Git", "GitHub Actions"]
+    skills: ["AWS", "Docker", "Kubernetes", "Git", "GitHub Actions"]
   }
 ];
 
 export const EXPERIENCE: Experience[] = [
   {
-    id: "exp-1",
-    role: "Full-Stack & AI Engineer",
+    id: "exp-0",
+    role: "Full-Stack & Security Engineer",
     company: "Freelance / Consultant",
     period: "2025 - Present",
-    description: "Architecting bespoke AI agents and high-performance web solutions. Specializing in RAG (Retrieval-Augmented Generation) pipelines and automated business intelligence.",
+    description: "Architecting secure full-stack products and hardening backend services for real-world traffic and threat models.",
     highlights: [
-      "Developed custom AI workflows integrating LLMs with proprietary data sources via RAG.",
-      "Shipped responsive, full-stack applications with focus on real-time data processing.",
-      "Consulted on process automation to optimize client operational efficiency."
+      "Designed security-first APIs with strong auth, rate limiting, and audit logging.",
+      "Shipped responsive full-stack applications with observability and hardened defaults.",
+      "Consulted on vulnerability triage, hardening reviews, and incident-ready runbooks."
     ],
-    tech: ["React", "TypeScript", "Python", "LangChain", "OpenAI API"]
+    tech: ["React", "TypeScript", "Node.js", "PostgreSQL", "Linux"]
+  },
+  {
+    id: "exp-1",
+    role: "Board Member | Recruiter | Web Player | DFIR Player",
+    company: "M4SEC Team",
+    period: "2024 - Present",
+    description: "Elite academic CTF team representing 1337 Coding School in Rabat (UM6P / 42 Network). Driving recruitment, competitive strategy, and hands-on participation across web security and DFIR tracks.",
+    highlights: [
+      "Ranked #1 in Morocco for the 2025 season and #135 worldwide on CTFtime (late 2025).",
+      "Placed top 10 in major CTFs, including CyberSphere CTF (1st, 2024), L3akCTF (4th, 2024), DeadSec CTF (5th, 2024), RSTCON CTF (4th, 2025), and FortID CTF (6th, 2025).",
+      "Coordinated recruiting, onboarding, and category specialization across web, DFIR, and incident response playbooks."
+    ],
+    tech: ["Web Security", "DFIR", "Incident Response", "CTF Strategy", "Linux", "Networking"]
   },
   {
     id: "exp-2",
@@ -142,7 +155,7 @@ export const PROJECTS: Project[] = [
   {
     id: "p3",
     title: "BioGuide",
-    description: "A full-stack platform for visualizing structured biomedical data with interactive dashboards and a context-aware AI assistant.",
+    description: "A full-stack platform for visualizing structured biomedical data with interactive dashboards and advanced search tooling.",
     role: "Full-Stack Dev",
     impact: "Built a high-performance data engine for real-time visualization of PMC research corpora.",
     tech: ["React", "Node.js", "MongoDB", "D3.js", "Tailwind"],
@@ -207,13 +220,13 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "p11",
-    title: "React Chess AI",
-    description: "A high-performance chess engine integrated into a React web app, featuring a Minimax-based AI with Alpha-Beta pruning.",
+    title: "React Chess Engine",
+    description: "A high-performance chess engine integrated into a React web app, featuring a Minimax search with Alpha-Beta pruning.",
     role: "Full-Stack Developer",
-    impact: "Engineered a strategic AI (~1400 ELO) capable of real-time positional evaluation and human-like draw negotiation.",
+    impact: "Engineered a strategic engine (~1400 ELO) capable of real-time positional evaluation and draw negotiation.",
     tech: ["React", "TypeScript", "Minimax Algorithm", "Tailwind CSS"],
     featured: true,
-    category: "AI",
+    category: "Software Engineering",
     github: "https://github.com/Is-Ammar/ichess"
   },
   {

@@ -25,20 +25,20 @@ export const About = () => {
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div variants={fadeInUp} className="space-y-8 text-lg text-text leading-relaxed">
             <p>
-              With 4+ years in software engineering, I architect <span className="text-text-strong font-semibold">intelligent applications</span> and
-              <span className="text-text-strong font-semibold"> AI infrastructure</span> that is measurable, secure, and fast to ship.
+              With 2+ years in software engineering, I build <span className="text-text-strong font-semibold">security-first full-stack products</span> and
+              <span className="text-text-strong font-semibold"> resilient backend systems</span> that ship fast without sacrificing reliability.
             </p>
             <p>
-              I translate complex LLM workflows into production systems: retrieval pipelines, cost-aware inference, and telemetry that proves impact.
-              The goal is always the same: clear outcomes, reliable delivery, and software that scales.
+              I translate real-world threat models into hardened APIs, least-privilege access, and incident-ready telemetry.
+              The goal stays the same: clear outcomes, reliable delivery, and software that scales.
             </p>
 
             <div className="grid gap-4 pt-4 sm:grid-cols-2">
               <div className="rounded-[24px] border border-white/10 bg-bg-elev-1/70 px-5 py-4 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur transition-all duration-500">
                 <h4 className="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted mb-3">Primary Focus</h4>
                 <ul className="space-y-1 text-sm text-text-strong">
-                  <li>AI Systems Engineering</li>
-                  <li>High-Performance Web</li>
+                  <li>Application Security</li>
+                  <li>Full-Stack Engineering</li>
                 </ul>
               </div>
               <div className="rounded-[24px] border border-white/10 bg-bg-elev-1/70 px-5 py-4 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur transition-all duration-500">

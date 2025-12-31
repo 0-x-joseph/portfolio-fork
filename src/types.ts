@@ -8,7 +8,7 @@ export interface Project {
   link?: string;
   github?: string;
   featured: boolean;
-  category: 'AI' | 'Web' | 'System' | 'Infra' | 'Security' | 'Software Engineering' | 'Graphics & Simulation' | 'DevOps & Utilities';
+  category: 'Web' | 'System' | 'Infra' | 'Security' | 'Software Engineering' | 'Graphics & Simulation' | 'DevOps & Utilities';
   imagePlaceholder?: string; // For visual variety
 }
 

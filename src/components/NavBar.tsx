@@ -276,7 +276,7 @@ export const NavBar = () => {
                 </span>
                 <span className="flex flex-col">
                   <span className="text-xs text-text-strong">Ismail Ammar</span>
-                  <span className="text-[10px] text-text-muted">Security + AI Systems</span>
+                  <span className="text-[10px] text-text-muted">Security + Full-Stack Systems</span>
                 </span>
               </a>
 

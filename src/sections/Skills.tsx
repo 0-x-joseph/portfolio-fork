@@ -5,12 +5,9 @@ import {
   Activity,
   AppWindow,
   Atom,
-  Bot,
-  BrainCircuit,
   Cloud,
   Code2,
   Container,
-  Cpu,
   Database,
   GitBranch,
   Github,
@@ -32,11 +29,9 @@ import { DURATION, EASE_OUT, fadeInUp, staggerContainer, revealLine } from '../u
 
 const SKILL_ICONS: Record<string, LucideIcon> = {
   Python: Terminal,
-  PyTorch: Cpu,
-  LangChain: BrainCircuit,
-  RAG: Network,
-  'OpenAI API': Sparkles,
-  HuggingFace: Bot,
+  C: Terminal,
+  'C++': Terminal,
+  Networking: Network,
   FastAPI: Activity,
   Django: Braces,
   'Node.js': Server,
@@ -68,7 +63,7 @@ const SKILL_TONES: Record<
   string,
   { icon: string; badge: string; label: string; glow: string }
 > = {
-  'AI & ML': {
+  'Security & Systems': {
     icon: 'text-accent',
     badge: 'border-accent/40 bg-accent/10',
     label: 'text-accent/80',
