@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useLenis } from 'lenis/react';
 import { NavBar } from './components/NavBar';
@@ -11,11 +11,13 @@ import { Experience } from './sections/Experience';
 import { Contact } from './sections/Contact';
 import GradualBlur from './components/GradualBlur';
 import { GlobalBackdrop } from './components/GlobalBackdrop';
+import { WelcomeOverlay } from './components/WelcomeOverlay';
 
 const App = () => {
   const prefersReducedMotion = useReducedMotion();
   const lenis = useLenis();
   const hasRestoredRef = useRef(false);
+  const [introDone, setIntroDone] = useState(false);
 
   // Smooth scroll behavior for anchor links
   useEffect(() => {
@@ -26,6 +28,7 @@ const App = () => {
   }, [prefersReducedMotion]);
 
   useEffect(() => {
+    if (!introDone) return;
     const getSections = () => Array.from(document.querySelectorAll<HTMLElement>('main section'));
 
     const getSectionTop = (section: HTMLElement) => section.getBoundingClientRect().top + window.scrollY;
@@ -123,7 +126,7 @@ const App = () => {
       window.removeEventListener('pagehide', storeCurrentSection);
       window.removeEventListener('beforeunload', storeCurrentSection);
     };
-  }, [lenis, prefersReducedMotion]);
+  }, [introDone, lenis, prefersReducedMotion]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -150,34 +153,39 @@ const App = () => {
 
   return (
     <div className="min-h-screen w-full relative text-text selection:bg-accent selection:text-bg overflow-x-hidden font-body">
-      <GlobalBackdrop />
-      
-      {/* Cinematic Viewport Blur Effects */}
-      <GradualBlur 
-        target="page" 
-        position="bottom" 
-        height="12rem"
-        responsive={true}
-        mobileHeight="9rem"
-        tabletHeight="10rem"
-        desktopHeight="12rem"
-        strength={2} 
-        divCount={8} 
-        zIndex={50} 
-        opacity={1} 
-        preset="smooth"
-      />
-      
-      <NavBar />
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Skills />
-        <Work />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
+      <WelcomeOverlay onFinish={() => setIntroDone(true)} />
+      {introDone && (
+        <>
+          <GlobalBackdrop />
+
+          {/* Cinematic Viewport Blur Effects */}
+          <GradualBlur
+            target="page"
+            position="bottom"
+            height="12rem"
+            responsive={true}
+            mobileHeight="9rem"
+            tabletHeight="10rem"
+            desktopHeight="12rem"
+            strength={2}
+            divCount={8}
+            zIndex={50}
+            opacity={1}
+            preset="smooth"
+          />
+
+          <NavBar />
+          <main className="relative z-10">
+            <Hero />
+            <About />
+            <Skills />
+            <Work />
+            <Experience />
+            <Contact />
+          </main>
+          <Footer />
+        </>
+      )}
     </div>
   );
 };
