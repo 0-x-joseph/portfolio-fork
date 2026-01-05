@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { motion, AnimatePresence, useInView, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useReducedMotion, type Variants } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 import {
   Activity,
@@ -108,6 +108,35 @@ const TECH_ICON_SIZE = {
 } as const;
 
 const TECH_ICON_PATTERN: Array<keyof typeof TECH_ICON_WRAPPER> = ['sm', 'md', 'lg', 'md', 'sm'];
+
+const PROJECT_CARD_VARIANTS: Variants = {
+  initial: (index: number) => ({
+    opacity: 0,
+    y: 26,
+    scale: 0.96,
+    rotate: index % 2 === 0 ? -1.5 : 1.5,
+    filter: 'blur(6px)',
+    clipPath: 'inset(12% 10% 10% 10% round 28px)',
+  }),
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    filter: 'blur(0px)',
+    clipPath: 'inset(0% 0% 0% 0% round 28px)',
+    transition: { duration: DURATION.md, ease: EASE_OUT },
+  },
+  exit: (index: number) => ({
+    opacity: 0,
+    y: 14,
+    scale: 0.98,
+    rotate: index % 2 === 0 ? 1 : -1,
+    filter: 'blur(3px)',
+    clipPath: 'inset(8% 8% 8% 8% round 28px)',
+    transition: { duration: DURATION.xs, ease: EASE_OUT },
+  }),
+};
 
 const getTechIcons = (tech: string[]): TechIconItem[] => {
   const seen = new Set<string>();
@@ -239,7 +268,15 @@ export const Work = () => {
           </motion.div>
         </div>
 
-        <motion.div id="work-grid" layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div
+          key={filter}
+          id="work-grid"
+          layout
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+          className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+        >
           <AnimatePresence
             mode="popLayout"
             onExitComplete={() => {
@@ -248,8 +285,14 @@ export const Work = () => {
               requestAnimationFrame(() => scrollToWork());
             }}
           >
-            {visibleProjects.map((p) => (
-              <WorkCard key={p.id} project={p} reduceMotion={reduceMotion} isScrolling={isScrolling} />
+            {visibleProjects.map((p, index) => (
+              <WorkCard
+                key={p.id}
+                project={p}
+                index={index}
+                reduceMotion={reduceMotion}
+                isScrolling={isScrolling}
+              />
             ))}
           </AnimatePresence>
         </motion.div>
@@ -277,16 +320,19 @@ export const Work = () => {
 
 const WorkCard = ({
   project,
+  index,
   reduceMotion,
   isScrolling,
 }: {
   project: Project;
+  index: number;
   reduceMotion: boolean;
   isScrolling: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(cardRef, { amount: 0.35 });
   const allowMotion = !reduceMotion && !isScrolling && isInView;
+  const cardVariants = reduceMotion ? fadeInUp : PROJECT_CARD_VARIANTS;
   const techIcons = useMemo(
     () => getTechIcons(project.tech).slice(0, TECH_ICON_PATTERN.length),
     [project.tech]
@@ -296,10 +342,10 @@ const WorkCard = ({
     <motion.div
       ref={cardRef}
       layout
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: DURATION.sm, ease: EASE_OUT }}
+      variants={cardVariants}
+      custom={index}
+      exit="exit"
+      transition={{ layout: { duration: DURATION.sm, ease: EASE_OUT } }}
       className="glow-card group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-bg-elev-1/70 p-6 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur transition-all duration-500"
     >
       <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
