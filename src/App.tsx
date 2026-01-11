@@ -182,8 +182,6 @@ const App = () => {
             <About />
             <Skills />
             <SkillProficiency />
-            <Work />
-            <HTBWriteups />
             <Experience />
             <Contact />
           </main>

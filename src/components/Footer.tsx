@@ -7,7 +7,7 @@ export const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-4 text-[11px] font-mono uppercase tracking-[0.3em] text-text-muted md:flex-row">
           <div className="flex items-center gap-4">
             <div className="h-2 w-2 rounded-full bg-line-strong" />
-            <span>© {new Date().getFullYear()} Ismail Ammar. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Jospeh Y. Bouryal. All rights reserved.</span>
           </div>
           <div className="flex gap-8">
             <span>RABAT, MA</span>

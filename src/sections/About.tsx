@@ -25,26 +25,28 @@ export const About = () => {
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div variants={fadeInUp} className="space-y-8 text-lg text-text leading-relaxed">
             <p>
-              With 2+ years in software engineering, I build <span className="text-text-strong font-semibold">security-first full-stack products</span> and
-              <span className="text-text-strong font-semibold"> resilient backend systems</span> that ship fast without sacrificing reliability.
+              I specialize in <span className="text-text-strong font-semibold">low-level systems engineering</span> and 
+              <span className="text-text-strong font-semibold"> decentralized infrastructure</span>. My approach combines the rigor of 
+              C/C++ memory management with the safety of Rust to build performant, exploit-resistant backends.
             </p>
             <p>
-              I translate real-world threat models into hardened APIs, least-privilege access, and incident-ready telemetry.
-              The goal stays the same: clear outcomes, reliable delivery, and software that scales.
+              Currently focused on bridging the gap between <span className="text-accent-2">robotics frameworks (Hermes)</span> and 
+              <span className="text-text-strong font-semibold"> blockchain protocol design</span>. I don't just use tools; I build 
+              them from the ground up—from custom raycasting engines to peer-to-peer networking layers.
             </p>
 
             <div className="grid gap-4 pt-4 sm:grid-cols-2">
               <div className="rounded-[24px] border border-white/10 bg-bg-elev-1/70 px-5 py-4 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur transition-all duration-500">
-                <h4 className="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted mb-3">Primary Focus</h4>
+                <h4 className="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted mb-3">Core Stack</h4>
                 <ul className="space-y-1 text-sm text-text-strong">
-                  <li>Application Security</li>
-                  <li>Full-Stack Engineering</li>
+                  <li>Rust • C++ • Go</li>
+                  <li>Blockchain Protocol Design</li>
                 </ul>
               </div>
               <div className="rounded-[24px] border border-white/10 bg-bg-elev-1/70 px-5 py-4 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.04)_inset] backdrop-blur transition-all duration-500">
                 <h4 className="font-mono text-[11px] uppercase tracking-[0.3em] text-text-muted mb-3">Location</h4>
                 <div className="text-sm text-text-strong">Based in Morocco</div>
-                <div className="text-sm text-text-muted">Available Remote</div>
+                <div className="text-sm text-text-muted">Available for Global Remote</div>
               </div>
             </div>
           </motion.div>
@@ -58,7 +60,7 @@ export const About = () => {
                   <div className="h-1.5 w-1.5 rounded-full bg-text-muted" />
                 </div>
               </div>
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent-2 mb-6">Education Log</h3>
+              <h3 className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent-2 mb-6">Development Track</h3>
               <div className="space-y-8">
                 {EDUCATION.map((edu) => (
                   <div key={edu.id} className="relative pl-6 border-l border-line-strong/70">

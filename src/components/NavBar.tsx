@@ -18,7 +18,7 @@ import {
   type MotionValue,
   type SpringOptions,
 } from 'framer-motion';
-import { ArrowRight, Briefcase, Download, FileText, Layers, Mail, Menu, User, X } from 'lucide-react';
+import { Bitcoin, ArrowRight, Briefcase, Download, FileText, Layers, Mail, Menu, User, X } from 'lucide-react';
 import { SOCIALS } from '../constants';
 import { DURATION, EASE_OUT } from '../utils/motion';
 import { ProgressiveBlur } from './ProgressiveBlur';
@@ -221,10 +221,8 @@ export const NavBar = () => {
   const [isDesktop, setIsDesktop] = useState(false);
   const { scrollY } = useScroll();
   const items = [
-    { label: "Home", icon: "IA", href: "#", special: true },
+    { label: "Home", icon: <Bitcoin size="100%"/>, href: "#", special: true },
     { label: "About", icon: <User size="100%" />, href: "#about" },
-    { label: "Work", icon: <Briefcase size="100%" />, href: "#work" },
-    { label: "Writeups", icon: <FileText size="100%" />, href: "#writeups" },
     { label: "Stack", icon: <Layers size="100%" />, href: "#skills" },
     { label: "Contact", icon: <Mail size="100%" />, href: "#contact" },
     { label: "Resume", icon: <Download size="100%" />, href: SOCIALS.resume, accent: true, target: "_blank", rel: "noopener noreferrer" },
