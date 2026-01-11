@@ -274,15 +274,15 @@ export const NavBar = () => {
                 <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-line-strong/70 bg-bg-elev-1/90 text-[10px] font-semibold tracking-[0.3em] text-text-strong transition-all group-hover:border-accent/60 group-hover:text-accent">
                   <img
                     src="/profile.jpg"
-                    alt="Ismail Ammar"
+                    alt="Joseph Y. Bouryal"
                     className="h-full w-full rounded-full object-cover"
                     loading="eager"
                     decoding="async"
                   />
                 </span>
                 <span className="flex flex-col">
-                  <span className="text-xs text-text-strong">Ismail Ammar</span>
-                  <span className="text-[10px] text-text-muted">Security + Full-Stack Systems</span>
+                  <span className="text-xs text-text-strong">Joseph Y. Bouryal</span>
+                  <span className="text-[10px] text-text-muted">Backend Blockchain Engineer</span>
                 </span>
               </a>
 
