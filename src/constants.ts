@@ -1,7 +1,7 @@
 import { Project, Experience, Education, SkillCategory } from './types';
 
 export const SOCIALS = {
-  email: "josephbouryal@gmail.com",
+  email: "joseph.bouryal@proton.me",
   github: "https://github.com/0-x-joseph",
   linkedin: "https://linkedin.com/in/youssef-bouryal",
   resume: "/resume.pdf"
