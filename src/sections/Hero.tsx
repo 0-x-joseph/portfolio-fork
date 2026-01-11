@@ -67,7 +67,7 @@ export const Hero = () => {
 
           <motion.div variants={fadeInUp} className="overflow-hidden">
             <h1 className="text-[clamp(3.5rem,9vw,9rem)] font-display font-semibold leading-[0.88] tracking-tight text-text-strong">
-              <ScrambleText text="JOSEPH B." /> <br />
+              <ScrambleText text="JOSEPH Y." /> <br />
               <span className="text-text-muted">
                 <ScrambleText text="Bouryal" />
               </span>
